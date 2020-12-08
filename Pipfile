@@ -15,4 +15,4 @@ pyinstaller = "*"
 python_version = "3.9"
 
 [scripts]
-client = "py applemusic.py"
+client = "python3 applemusic.py"

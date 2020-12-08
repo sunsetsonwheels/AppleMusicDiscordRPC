@@ -1,7 +1,7 @@
 __author__ = 'jkelol111'
 __copyright__ = 'Copyright (C) 2020-present jkelol111.'
 __license__ = 'GNU General Public License Version 3'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import pypresence
 import applescript
@@ -41,18 +41,21 @@ try:
             "version": applescript.tell.app("Music", "version as string").out
         }
 
+        if new_config["state"] == "stopped":
+            new_config["track"] = "Not playing anything"
+            new_config["artist"] = "Idling"
+        elif new_config["state"] in SUPPOSED_STATES:
+            if new_config["track"] == "":
+                new_config["track"] = "Couldn't get track"
+            if new_config["artist"] == "":
+                new_config["artist"] = "Couldn't get artist"
+        else:
+            new_config["track"] = "Unknown player state"
+            new_config["artist"] = "Unknown player state"
+            new_config["state"] = "stopped"
+
         try:
             if new_config != config:
-                if new_config["state"] == "stopped":
-                    new_config["track"] = "Not playing anything"
-                    new_config["artist"] = "Idling"
-                else:
-                    if new_config["state"] in SUPPOSED_STATES:
-                        if new_config["track"] == "":
-                            new_config["track"] = "Couldn't get track"
-                        if new_config["artist"] == "":
-                            new_config["artist"] = "Couldn't get artist"
-
                 print(f"{colorama.Fore.YELLOW}{config['track']}, {config['artist']}, {config['state'].capitalize()}{colorama.Style.RESET_ALL} --> {colorama.Fore.GREEN}{new_config['track']}, {new_config['artist']}, {new_config['state'].capitalize()}")
                 RPC.update(details=new_config["track"],
                             state=new_config["artist"],
