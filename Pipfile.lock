@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ab30605079ec32637953a7d61af7b65d59917dfab8e05ff64dbdbf69fe9080c1"
+            "sha256": "6d980a791df1949f92ed90945a55c8cbda1e229ff5741b4fccf942f60675ef2b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,19 +16,12 @@
         ]
     },
     "default": {
-        "altgraph": {
-            "hashes": [
-                "sha256:1f05a47122542f97028caf78775a095fbe6a2699b5089de8477eb583167d69aa",
-                "sha256:c623e5f3408ca61d4016f23a681b9adb100802ca3e3da5e718915a9e4052cebe"
-            ],
-            "version": "==0.17"
-        },
         "applescript": {
             "hashes": [
-                "sha256:9667c06e4d224093176771159f0d4a579498d80fafe58b7cba66766538c41c14"
+                "sha256:e39542c0411d82c3c860af23f5a54c121279a409e5cf55acfa7f881ea9798854"
             ],
             "index": "pypi",
-            "version": "==2020.12.3"
+            "version": "==2021.2.9"
         },
         "colorama": {
             "hashes": [
@@ -37,6 +30,23 @@
             ],
             "index": "pypi",
             "version": "==0.4.4"
+        },
+        "pypresence": {
+            "hashes": [
+                "sha256:54618a18085d104aa063df8296dac95cf01b922ed8aab4b021f71718bb3f19b1",
+                "sha256:f477a874c4164193e47f7144d726b0ba2fe69afa2807e3bd944efe4c4c137fac"
+            ],
+            "index": "pypi",
+            "version": "==4.2.0"
+        }
+    },
+    "develop": {
+        "altgraph": {
+            "hashes": [
+                "sha256:1f05a47122542f97028caf78775a095fbe6a2699b5089de8477eb583167d69aa",
+                "sha256:c623e5f3408ca61d4016f23a681b9adb100802ca3e3da5e718915a9e4052cebe"
+            ],
+            "version": "==0.17"
         },
         "macholib": {
             "hashes": [
@@ -48,25 +58,17 @@
         },
         "pyinstaller": {
             "hashes": [
-                "sha256:954ae81de9a4bc096ff02433b3e245b9272fe53f27cac319e71fe7540952bd3d"
+                "sha256:f5c0eeb2aa663cce9a5404292c0195011fa500a6501c873a466b2e8cad3c950c"
             ],
             "index": "pypi",
-            "version": "==4.1"
+            "version": "==4.2"
         },
         "pyinstaller-hooks-contrib": {
             "hashes": [
-                "sha256:bf4543a16c9c6e9dd2d70ea3fee78b81d3357a68f706df471d990213892259d9",
-                "sha256:dd752c88c1c7bb6920f7de248c12d4411c0463877e5e64afdc4f7e93dff9fc94"
+                "sha256:27558072021857d89524c42136feaa2ffe4f003f1bdf0278f9b24f6902c1759c",
+                "sha256:892310e6363655838485ee748bf1c5e5cade7963686d9af8650ee218a3e0b031"
             ],
-            "version": "==2020.10"
-        },
-        "pypresence": {
-            "hashes": [
-                "sha256:8eed4871d25f5c6bf52710bf2a9fe18601dc58c74726917e87c685de2e9151d9"
-            ],
-            "index": "pypi",
-            "version": "==4.0.0"
+            "version": "==2021.1"
         }
-    },
-    "develop": {}
+    }
 }

@@ -7,9 +7,9 @@ name = "pypi"
 applescript = "*"
 colorama = "*"
 pypresence = "*"
-pyinstaller = "*"
 
 [dev-packages]
+pyinstaller = "*"
 
 [requires]
 python_version = "3.9"
