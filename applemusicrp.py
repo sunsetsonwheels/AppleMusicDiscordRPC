@@ -17,8 +17,8 @@ print("")
 SUPPOSED_STATES = ["playing", "paused"]
 
 config = {
-    "track": "Not playing anything",
-    "artist": "Idling",
+    "track": "Initalizing Rich Presence",
+    "artist": "AppleMusicDiscordPresence v" + __version__ + " by jkelol111 et al.",
     "state": "stopped",
     "version": applescript.tell.app("Music", "version as string").out
 }
