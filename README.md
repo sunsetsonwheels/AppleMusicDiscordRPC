@@ -1,9 +1,27 @@
 # AppleMusicDiscordPresence
-Discord Rich Presence for Apple Music on macOS, based on CustomDiscordPresence.
+Discord Rich Presence for Apple Music on macOS.
 
-Only works on macOS for now, preferrably with Music 1.1.4.94 (shipped with macOS 11.3 Beta 2 and above).
+## Requirements
+To run this app/script, you will need to have the following requirements:
 
-## Instructions to run
+- macOS Catalina and above (macOS 11.3 recommended).
+- Go 1.16 or newer (if you're using the Go version)
+- Python 3.6 or newer (if you're using the Python version)
+
+## Versions
+There are two different versions of this app/script:
+
+- Go (maintained)
+- Python (not maintained)
+
+stored in their respective directories. Go to their respective sections to learn how to use/build them.
+
+## Go (maintained)
+
+TBC
+
+## Python (not maintained)
+### Instructions to run
 
 1. Clone this repository somewhere.
 2. Download Python 3 from python.org or from Homebrew.
@@ -12,7 +30,7 @@ Only works on macOS for now, preferrably with Music 1.1.4.94 (shipped with macOS
 5. `pipenv install`
 6. `pipenv run python3 applemusicrp.py`
 
-## Instructions to build
+### Instructions to build
 
 You have to complete '[Instructions to run](#instructions-to-run)' before continuing!
 
@@ -20,4 +38,5 @@ You have to complete '[Instructions to run](#instructions-to-run)' before contin
 3. `pyinstaller applemusicrp.spec`
 3. The application will be built to `dist/`. Run it from there or distribute to others.
 
+## Credits
 Icons by Flaticons.
