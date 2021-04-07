@@ -14,6 +14,8 @@ type AppleMusicPlaybackData struct {
 	track, artist, state, version string
 }
 
+const scriptVersion = "2.0.0"
+
 func main() {
 	startAMPlaybackData := AppleMusicPlaybackData{
 		track:   "Loading track",
@@ -22,7 +24,7 @@ func main() {
 		version: "Loading AM version",
 	}
 
-	color.Green("AppleMusicDiscordPresence v. (C) 2021-present jkelol111 et al.")
+	color.Green("AppleMusicDiscordPresence v." + scriptVersion + " (C) 2021-present jkelol111 et al.")
 	color.Yellow("Licenced to you under the GNU General Public License Version 3.\n\n")
 
 	fmt.Println("Connecting to Discord...")
