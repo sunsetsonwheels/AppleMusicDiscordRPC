@@ -4,8 +4,8 @@ Discord Rich Presence for Apple Music on macOS.
 ## Requirements
 To run this app, you will need to have the following requirements:
 
-- macOS Big Sur 11.3 and above).
-- Xcode 12.5.
+- macOS Big Sur 11.3 and above.
+- Xcode 12.5 and above.
 
 ## Build instuctions
 1. Go to AppleMusicDiscordRPC.xcodeproj ->  AppleMusicDiscordRPC target -> Signing and Capabilities and configure it to your desired account.
