@@ -1,42 +1,19 @@
-# AppleMusicDiscordPresence
+# AppleMusicDiscordRPC
 Discord Rich Presence for Apple Music on macOS.
 
 ## Requirements
-To run this app/script, you will need to have the following requirements:
+To run this app, you will need to have the following requirements:
 
-- macOS Catalina and above (macOS 11.3 recommended).
-- Go 1.16 or newer (if you're using the Go version).
-- Python 3.6 or newer (if you're using the Python version).
+- macOS Big Sur 11.3 and above.
+- Xcode 12.5 and above.
 
-## Versions
-There are two different versions of this app/script:
-
-- Python
-- Go
-
-stored with their respective extensions. Go to their respective sections to learn how to use/build them.
-
-## Python
-### Instructions to run
-
-1. Clone this repository somewhere.
-2. Download Python 3 from python.org or from Homebrew.
-3. Download Pipenv
-4. `cd` to the directory where you cloned this project.
-5. `pipenv install`
-6. `pipenv run python3 applemusicrp.py`
-
-### Instructions to build
-
-You have to complete '[Instructions to run](#instructions-to-run)' before continuing!
-
-1. `pipenv install -d`
-3. `pyinstaller applemusicrp.spec --clean`
-3. The application will be built to `dist/`. Run it from there or distribute to others.
-
-## Go
-
-TBC
+## Build instuctions
+1. Go to AppleMusicDiscordRPC.xcodeproj ->  AppleMusicDiscordRPC target -> Signing and Capabilities and configure it to your desired account.
+2. Click the Play button and pray.
+3. ???
+4. If it works, horray! If not, too bad, you'll have to wait until I get around to completing it and publish releases.
 
 ## Credits
-Icons by Flaticons.
+Icons by Flaticons. They can be found in this project @ `discord-icons`.
+
+SwordRPC originally by Alejandro Alonso. Addtional functionality added by Vincent Liw. Patched dependencies version used in this project is by Insu Byeon (chorym/SwordRPC).
