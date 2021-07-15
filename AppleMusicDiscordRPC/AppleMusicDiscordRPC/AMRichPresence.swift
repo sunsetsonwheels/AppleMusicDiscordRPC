@@ -53,7 +53,8 @@ class AMRPCObservable: ObservableObject {
     
     private let nc: DistributedNotificationCenter = DistributedNotificationCenter.default()
     private var ncObserver: NSObjectProtocol = NSObject()
-    private let app: iTunesApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
+    private let AMApp: iTunesApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
+    private var AMAppVersion: String = ""
     
     private var rpc: SwordRPC = SwordRPC(appId: "785053859915366401")
 
@@ -64,7 +65,7 @@ class AMRPCObservable: ObservableObject {
             var presence = RichPresence()
             presence.details = self.rpcData.track
             presence.state = self.rpcData.artist
-            presence.assets.largeText = "Apple Music \(self.app?.version ?? "")"
+            presence.assets.largeText = "Apple Music \(self.AMAppVersion)"
             presence.assets.largeImage = "applemusic_large"
             presence.assets.smallText = self.rpcData.state.rawValue.capitalized
             presence.assets.smallImage = self.rpcData.state.rawValue
@@ -73,11 +74,11 @@ class AMRPCObservable: ObservableObject {
     }
     
     func manuallyUpdateRPCData () {
-        let currentAMTrack: iTunesTrack? = self.app?.currentTrack
+        let currentAMTrack: iTunesTrack? = self.AMApp?.currentTrack
         self.rpcData.track = currentAMTrack?.name ?? "Not playing anything."
         self.rpcData.artist = currentAMTrack?.artist ?? "Not playing anything."
 
-        switch self.app?.playerState {
+        switch self.AMApp?.playerState {
         case .iTunesEPlSPlaying?,
              .iTunesEPlSFastForwarding?,
              .iTunesEPlSRewinding?:
@@ -89,6 +90,8 @@ class AMRPCObservable: ObservableObject {
         default:
             self.rpcData.state = .stopped
         }
+        
+        self.AMAppVersion = self.AMApp?.version ?? ""
     }
     
     func listenAMNotifications() {
