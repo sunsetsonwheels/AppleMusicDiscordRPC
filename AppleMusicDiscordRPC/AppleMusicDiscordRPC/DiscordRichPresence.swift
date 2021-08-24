@@ -40,7 +40,7 @@ class DiscordRPCObservable: ObservableObject {
             var presence = RichPresence()
             presence.details = self.rpcData.track
             presence.state = self.rpcData.artist
-            presence.assets.largeText = "Apple Music \(self.AMAppVersion), \(self.AMApp?.playerPosition ?? 0)"
+            presence.assets.largeText = "Apple Music \(self.AMAppVersion)"
             presence.assets.largeImage = "applemusic_large"
             presence.assets.smallText = self.rpcData.state.rawValue.capitalized
             presence.assets.smallImage = self.rpcData.state.rawValue
