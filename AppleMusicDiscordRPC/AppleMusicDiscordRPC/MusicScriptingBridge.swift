@@ -31,7 +31,9 @@ extension SBObject: MusicItem {}
 
 // MARK: MusicTrack
 @objc public protocol MusicTrack: MusicItem {
+    @objc optional var album: String { get } // the album name of the track
     @objc optional var artist: String { get } // the artist/source of the track
+    @objc optional var finish: Double { get } // the stop time of the track in seconds
 }
 extension SBObject: MusicTrack {}
 
@@ -39,6 +41,7 @@ extension SBObject: MusicTrack {}
 @objc public protocol MusicApplication: SBApplicationProtocol {
     @objc optional var currentTrack: MusicTrack { get } // the current targeted track
     @objc optional var playerState: MusicEPlS { get } // is the player stopped, paused, or playing?
+    @objc optional var playerPosition: Double { get } // the player’s position within the currently playing track in seconds.
     @objc optional var version: String { get } // the version of the application
 }
 extension SBApplication: MusicApplication {}

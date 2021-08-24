@@ -12,6 +12,8 @@ enum AMPlayerStates: String {
 struct DiscordRPCData {
     var track: String
     var artist: String
+    var startTime: Double?
+    var totalTime: Double?
     var state: AMPlayerStates
 }
 
@@ -38,10 +40,18 @@ class DiscordRPCObservable: ObservableObject {
             var presence = RichPresence()
             presence.details = self.rpcData.track
             presence.state = self.rpcData.artist
-            presence.assets.largeText = "Apple Music \(self.AMAppVersion)"
+            presence.assets.largeText = "Apple Music \(self.AMAppVersion), \(self.AMApp?.playerPosition ?? 0)"
             presence.assets.largeImage = "applemusic_large"
             presence.assets.smallText = self.rpcData.state.rawValue.capitalized
             presence.assets.smallImage = self.rpcData.state.rawValue
+            if self.rpcData.state == .playing &&
+                self.rpcData.startTime != nil &&
+                self.rpcData.totalTime != nil
+            {
+                let currentTime: Date = Date()
+                presence.timestamps.start = currentTime
+                presence.timestamps.end = currentTime + (self.rpcData.totalTime! - self.rpcData.startTime!)
+            }
             self.rpc.setPresence(presence)
         }
     }
@@ -70,6 +80,9 @@ class DiscordRPCObservable: ObservableObject {
             self.rpcData.state = .stopped
         }
         
+        self.rpcData.startTime = self.AMApp?.playerPosition
+        self.rpcData.totalTime = currentAMTrack?.finish
+        
         self.AMAppVersion = self.AMApp?.version ?? ""
     }
     
@@ -83,6 +96,8 @@ class DiscordRPCObservable: ObservableObject {
             self.rpcData.track = String(describing: notification.userInfo?[AnyHashable("Name")] ?? "Not playing anything.")
             self.rpcData.artist = String(describing: notification.userInfo?[AnyHashable("Artist")] ?? "Not playing anything.")
             self.rpcData.state = AMPlayerStates(rawValue: String(describing: notification.userInfo?[AnyHashable("Player State")] ?? "stopped").lowercased())!
+            self.rpcData.startTime = self.AMApp?.playerPosition
+            self.rpcData.totalTime = self.AMApp?.currentTrack?.finish
             self.setRPC()
         }
         self.logger.log("Listening for Apple Music notifications.")
