@@ -10,26 +10,25 @@ enum AMPlayerStates: String {
 }
 
 struct DiscordRPCData {
-    var track: String
-    var artist: String
+    var track: String?
+    var artist: String?
+    var album: String?
     var startTime: Double?
     var totalTime: Double?
     var state: AMPlayerStates
 }
 
 class DiscordRPCObservable: ObservableObject {
-    @Published var rpcData: DiscordRPCData = DiscordRPCData(
-        track: "Not playing anything.",
-        artist: "Not playing anything.",
-        state: .stopped
-    )
+    @Published var rpcData: DiscordRPCData = DiscordRPCData(state: .stopped)
     @Published var isDiscordConnected: Bool = false
     @Published var isChangingConnectionStatus: Bool = true
+    public var notPlayingText: String = "Not playing anything."
+    public var unknownAlbumText: String = "Unknown album"
     
     private let nc: DistributedNotificationCenter = DistributedNotificationCenter.default()
     private var ncObserver: NSObjectProtocol = NSObject()
     private let AMApp: MusicApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
-    private var AMAppVersion: String = ""
+    private var AMAppVersion: String?
     
     private var rpc: SwordRPC = SwordRPC(appId: "785053859915366401")
 
@@ -37,11 +36,20 @@ class DiscordRPCObservable: ObservableObject {
     
     func setRPC() {
         if isDiscordConnected {
-            var presence = RichPresence()
-            presence.details = self.rpcData.track
-            presence.state = self.rpcData.artist
-            presence.assets.largeText = "Apple Music \(self.AMAppVersion)"
-            presence.assets.largeImage = "applemusic_large"
+            var presence: RichPresence = RichPresence()
+
+            var currentTrack: String = self.rpcData.track ?? self.notPlayingText
+            if currentTrack.isEmpty {
+                currentTrack = self.notPlayingText
+            }
+            presence.details = currentTrack
+
+            var currentArtist: String = self.rpcData.artist ?? self.notPlayingText
+            if currentArtist.isEmpty {
+                currentArtist = self.notPlayingText
+            }
+            presence.state = currentArtist
+
             presence.assets.smallText = self.rpcData.state.rawValue.capitalized
             presence.assets.smallImage = self.rpcData.state.rawValue
             if self.rpcData.state == .playing &&
@@ -52,20 +60,19 @@ class DiscordRPCObservable: ObservableObject {
                 presence.timestamps.start = currentTime
                 presence.timestamps.end = currentTime + (self.rpcData.totalTime! - self.rpcData.startTime!)
             }
+            
+            presence.assets.largeText = "\(self.rpcData.album ?? self.unknownAlbumText), Apple Music \(self.AMAppVersion ?? "")"
+            presence.assets.largeImage = "applemusic_large"
+
             self.rpc.setPresence(presence)
         }
     }
     
     func manuallyUpdateRPCData () {
         let currentAMTrack: MusicTrack? = self.AMApp?.currentTrack
-        self.rpcData.track = currentAMTrack?.name ?? "Not playing anything."
-        if self.rpcData.track.isEmpty {
-            self.rpcData.track = "Not playing anything."
-        }
-        self.rpcData.artist = currentAMTrack?.artist ?? "Not playing anything."
-        if self.rpcData.artist.isEmpty {
-            self.rpcData.artist = "Not playing anything."
-        }
+        self.rpcData.track = currentAMTrack?.name
+        self.rpcData.artist = currentAMTrack?.artist
+        self.rpcData.album = currentAMTrack?.album
 
         switch self.AMApp?.playerState {
         case .playing?,
@@ -83,7 +90,7 @@ class DiscordRPCObservable: ObservableObject {
         self.rpcData.startTime = self.AMApp?.playerPosition
         self.rpcData.totalTime = currentAMTrack?.finish
         
-        self.AMAppVersion = self.AMApp?.version ?? ""
+        self.AMAppVersion = self.AMApp?.version
     }
     
     func listenAMNotifications() {
@@ -93,9 +100,10 @@ class DiscordRPCObservable: ObservableObject {
             queue: nil
         ) { notification in
             self.logger.log("Received Apple Music notification: \(notification, privacy: .public)")
-            self.rpcData.track = String(describing: notification.userInfo?[AnyHashable("Name")] ?? "Not playing anything.")
-            self.rpcData.artist = String(describing: notification.userInfo?[AnyHashable("Artist")] ?? "Not playing anything.")
-            self.rpcData.state = AMPlayerStates(rawValue: String(describing: notification.userInfo?[AnyHashable("Player State")] ?? "stopped").lowercased())!
+            self.rpcData.track = notification.userInfo?[AnyHashable("Name")] as? String
+            self.rpcData.artist = notification.userInfo?[AnyHashable("Artist")] as? String
+            self.rpcData.album = notification.userInfo?[AnyHashable("Album")] as? String
+            self.rpcData.state = AMPlayerStates(rawValue: (notification.userInfo?[AnyHashable("Player State")] as? String)?.lowercased() ?? "stopped") ?? .stopped
             self.rpcData.startTime = self.AMApp?.playerPosition
             self.rpcData.totalTime = self.AMApp?.currentTrack?.finish
             self.setRPC()

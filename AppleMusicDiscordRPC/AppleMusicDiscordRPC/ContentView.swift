@@ -8,13 +8,19 @@ struct ContentView: View {
                 Text("Track")
                     .bold()
                 Spacer()
-                Text(verbatim: rpcObservable.rpcData.track)
+                Text(verbatim: rpcObservable.rpcData.track ?? self.rpcObservable.notPlayingText)
             }
             HStack {
                 Text("Artist")
                     .bold()
                 Spacer()
-                Text(verbatim: rpcObservable.rpcData.artist)
+                Text(verbatim: rpcObservable.rpcData.artist ?? self.rpcObservable.notPlayingText)
+            }
+            HStack {
+                Text("Album")
+                    .bold()
+                Spacer()
+                Text(verbatim: rpcObservable.rpcData.album ?? self.rpcObservable.unknownAlbumText)
             }
             HStack {
                 Button(action: {
