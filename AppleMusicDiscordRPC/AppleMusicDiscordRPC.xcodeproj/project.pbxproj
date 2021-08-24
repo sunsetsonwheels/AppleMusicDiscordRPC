@@ -7,23 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EF39E0D268D912200299C7F /* AppleMusicDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AppleMusicDiscordRPCApp.swift */; };
+		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
+		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
 		2EF39E0F268D912200299C7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* ContentView.swift */; };
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
 		2EF39E14268D912300299C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E13268D912300299C7F /* Preview Assets.xcassets */; };
-		2EF39E1D268D913A00299C7F /* AMRichPresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* AMRichPresence.swift */; };
+		2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */; };
 		2EF39E20268D91D100299C7F /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF39E1F268D91D100299C7F /* SwordRPC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
 		2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicDiscordRPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EF39E0C268D912200299C7F /* AppleMusicDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicDiscordRPCApp.swift; sourceTree = "<group>"; };
+		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
 		2EF39E0E268D912200299C7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EF39E10268D912300299C7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EF39E13268D912300299C7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EF39E15268D912300299C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppleMusicDiscordRPC.entitlements; sourceTree = "<group>"; };
-		2EF39E1C268D913A00299C7F /* AMRichPresence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMRichPresence.swift; sourceTree = "<group>"; };
+		2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordRichPresence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,9 @@
 		2EF39E0B268D912200299C7F /* AppleMusicDiscordRPC */ = {
 			isa = PBXGroup;
 			children = (
-				2EF39E0C268D912200299C7F /* AppleMusicDiscordRPCApp.swift */,
-				2EF39E1C268D913A00299C7F /* AMRichPresence.swift */,
+				2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */,
+				2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */,
+				2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */,
 				2EF39E0E268D912200299C7F /* ContentView.swift */,
 				2EF39E10268D912300299C7F /* Assets.xcassets */,
 				2EF39E15268D912300299C7F /* Info.plist */,
@@ -152,8 +155,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EF39E0F268D912200299C7F /* ContentView.swift in Sources */,
-				2EF39E1D268D913A00299C7F /* AMRichPresence.swift in Sources */,
-				2EF39E0D268D912200299C7F /* AppleMusicDiscordRPCApp.swift in Sources */,
+				2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */,
+				2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */,
+				2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

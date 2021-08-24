@@ -3,47 +3,20 @@ import ScriptingBridge
 import SwordRPC
 import os
 
-// MARK: iTunes Scripting Bridge
-
-@objc fileprivate protocol iTunesTrack {
-    @objc optional var name: String { get }
-    @objc optional var artist: String { get }
-}
-
-extension SBObject: iTunesTrack {}
-
-@objc fileprivate enum iTunesEPlS: NSInteger {
-    case iTunesEPlSStopped = 0x6b505353
-    case iTunesEPlSPlaying = 0x6b505350
-    case iTunesEPlSPaused = 0x6b505370
-    case iTunesEPlSFastForwarding = 0x6b505346
-    case iTunesEPlSRewinding = 0x6b505352
-}
-
-@objc fileprivate protocol iTunesApplication {
-    @objc optional var currentTrack: iTunesTrack { get }
-    @objc optional var playerState: iTunesEPlS { get }
-    @objc optional var version: String { get }
-}
-
-extension SBApplication: iTunesApplication {}
-
-// MARK: Apple Music RPC
-
 enum AMPlayerStates: String {
     case playing = "playing"
     case paused = "paused"
     case stopped = "stopped"
 }
 
-struct AMRPCData {
+struct DiscordRPCData {
     var track: String
     var artist: String
     var state: AMPlayerStates
 }
 
-class AMRPCObservable: ObservableObject {
-    @Published var rpcData: AMRPCData = AMRPCData(
+class DiscordRPCObservable: ObservableObject {
+    @Published var rpcData: DiscordRPCData = DiscordRPCData(
         track: "Not playing anything.",
         artist: "Not playing anything.",
         state: .stopped
@@ -53,7 +26,7 @@ class AMRPCObservable: ObservableObject {
     
     private let nc: DistributedNotificationCenter = DistributedNotificationCenter.default()
     private var ncObserver: NSObjectProtocol = NSObject()
-    private let AMApp: iTunesApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
+    private let AMApp: MusicApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
     private var AMAppVersion: String = ""
     
     private var rpc: SwordRPC = SwordRPC(appId: "785053859915366401")
@@ -74,18 +47,24 @@ class AMRPCObservable: ObservableObject {
     }
     
     func manuallyUpdateRPCData () {
-        let currentAMTrack: iTunesTrack? = self.AMApp?.currentTrack
+        let currentAMTrack: MusicTrack? = self.AMApp?.currentTrack
         self.rpcData.track = currentAMTrack?.name ?? "Not playing anything."
+        if self.rpcData.track.isEmpty {
+            self.rpcData.track = "Not playing anything."
+        }
         self.rpcData.artist = currentAMTrack?.artist ?? "Not playing anything."
+        if self.rpcData.artist.isEmpty {
+            self.rpcData.artist = "Not playing anything."
+        }
 
         switch self.AMApp?.playerState {
-        case .iTunesEPlSPlaying?,
-             .iTunesEPlSFastForwarding?,
-             .iTunesEPlSRewinding?:
+        case .playing?,
+             .fastForwarding?,
+             .rewinding?:
             self.rpcData.state = .playing
-        case .iTunesEPlSPaused?:
+        case .paused?:
             self.rpcData.state = .paused
-        case .iTunesEPlSStopped?:
+        case .stopped?:
             self.rpcData.state = .stopped
         default:
             self.rpcData.state = .stopped

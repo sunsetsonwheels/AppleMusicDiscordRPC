@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var rpcObservable: AMRPCObservable = AMRPCObservable()
+    @ObservedObject var rpcObservable: DiscordRPCObservable = DiscordRPCObservable()
     var body: some View {
         VStack {
             HStack {

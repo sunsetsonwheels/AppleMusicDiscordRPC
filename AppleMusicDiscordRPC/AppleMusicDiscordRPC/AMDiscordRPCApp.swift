@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct AppleMusicRichPresenceApp: App {
+struct AMDiscordRPCApp: App {
 
     var body: some Scene {
         WindowGroup {
