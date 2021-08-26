@@ -1,4 +1,4 @@
-import AppKit
+import SwiftUI
 import ScriptingBridge
 import SwordRPC
 import os
@@ -10,7 +10,7 @@ enum AMPlayerStates: String {
 }
 
 struct DiscordRPCData {
-    var track: String?
+    var name: String?
     var artist: String?
     var album: String?
     var startTime: Double?
@@ -22,8 +22,14 @@ class DiscordRPCObservable: ObservableObject {
     @Published var rpcData: DiscordRPCData = DiscordRPCData(state: .stopped)
     @Published var isDiscordConnected: Bool = false
     @Published var isChangingConnectionStatus: Bool = true
-    public var notPlayingText: String = "Not playing anything."
-    public var unknownAlbumText: String = "Unknown album"
+    
+    @AppStorage("TopText") var topText: TextSetting = .name
+    @AppStorage("BottomText") var bottomText: TextSetting = .artist
+    @AppStorage("LargeImageHoverText") var largeImageHoverText: TextSetting = .album
+    @AppStorage("ShowLargeImage") var showLargeImage: Bool = true
+    @AppStorage("ShowVersionOnLargeImageHover") var showVersionOnLargeImageHover: Bool = true
+    @AppStorage("ShowPlaybackState") var showPlaybackState: Bool = true
+    @AppStorage("ShowRemainingTime") var showRemainingTime: Bool = true
     
     private let nc: DistributedNotificationCenter = DistributedNotificationCenter.default()
     private var ncObserver: NSObjectProtocol = NSObject()
@@ -34,25 +40,50 @@ class DiscordRPCObservable: ObservableObject {
 
     private let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "AMRPCObservable")
     
+    private func checkNilEmptyString(_ suspect: String?) -> Bool {
+        return !(suspect ?? "").isEmpty
+    }
+    
     func setRPC() {
         if isDiscordConnected {
             var presence: RichPresence = RichPresence()
-
-            var currentTrack: String = self.rpcData.track ?? self.notPlayingText
-            if currentTrack.isEmpty {
-                currentTrack = self.notPlayingText
+            
+            switch self.topText {
+            case .name:
+                if self.checkNilEmptyString(self.rpcData.name) {
+                    presence.details = self.rpcData.name
+                }
+            case .artist:
+                if self.checkNilEmptyString(self.rpcData.artist) {
+                    presence.details = self.rpcData.artist
+                }
+            case .album:
+                if checkNilEmptyString(self.rpcData.album) {
+                    presence.details = self.rpcData.album
+                }
+            case .none:
+                break
             }
-            presence.details = currentTrack
-
-            var currentArtist: String = self.rpcData.artist ?? self.notPlayingText
-            if currentArtist.isEmpty {
-                currentArtist = self.notPlayingText
+            
+            switch self.bottomText {
+            case .name:
+                if self.checkNilEmptyString(self.rpcData.name) {
+                    presence.state = self.rpcData.name
+                }
+            case .artist:
+                if self.checkNilEmptyString(self.rpcData.artist) {
+                    presence.state = self.rpcData.artist
+                }
+            case .album:
+                if self.checkNilEmptyString(self.rpcData.album) {
+                    presence.state = self.rpcData.album
+                }
+            case .none:
+                break
             }
-            presence.state = currentArtist
-
-            presence.assets.smallText = self.rpcData.state.rawValue.capitalized
-            presence.assets.smallImage = self.rpcData.state.rawValue
-            if self.rpcData.state == .playing &&
+            
+            if self.showRemainingTime &&
+                self.rpcData.state == .playing &&
                 self.rpcData.startTime != nil &&
                 self.rpcData.totalTime != nil
             {
@@ -61,8 +92,45 @@ class DiscordRPCObservable: ObservableObject {
                 presence.timestamps.end = currentTime + (self.rpcData.totalTime! - self.rpcData.startTime!)
             }
             
-            presence.assets.largeText = "\(self.rpcData.album ?? self.unknownAlbumText), Apple Music \(self.AMAppVersion ?? "")"
-            presence.assets.largeImage = "applemusic_large"
+            if self.showLargeImage {
+                var actualLargeImageHoverText: String = ""
+                
+                switch self.largeImageHoverText {
+                case .name:
+                    if self.checkNilEmptyString(self.rpcData.name) {
+                        actualLargeImageHoverText = self.rpcData.name!
+                    }
+                case .artist:
+                    if self.checkNilEmptyString(self.rpcData.artist) {
+                        actualLargeImageHoverText = self.rpcData.artist!
+                    }
+                case .album:
+                    if self.checkNilEmptyString(self.rpcData.album) {
+                        actualLargeImageHoverText = self.rpcData.album!
+                    }
+                case .none:
+                    break
+                }
+                
+                if self.showVersionOnLargeImageHover &&
+                    self.checkNilEmptyString(self.AMAppVersion) {
+                    if self.largeImageHoverText != .none {
+                        actualLargeImageHoverText += ", "
+                    }
+                    actualLargeImageHoverText += "Apple Music \(self.AMAppVersion!)"
+                }
+                
+                if self.showVersionOnLargeImageHover || self.largeImageHoverText != .none {
+                    presence.assets.largeText = actualLargeImageHoverText
+                }
+
+                presence.assets.largeImage = "applemusic_large"
+                
+                if self.showPlaybackState {
+                    presence.assets.smallText = self.rpcData.state.rawValue.capitalized
+                    presence.assets.smallImage = self.rpcData.state.rawValue
+                }
+            }
 
             self.rpc.setPresence(presence)
         }
@@ -70,7 +138,7 @@ class DiscordRPCObservable: ObservableObject {
     
     func manuallyUpdateRPCData () {
         let currentAMTrack: MusicTrack? = self.AMApp?.currentTrack
-        self.rpcData.track = currentAMTrack?.name
+        self.rpcData.name = currentAMTrack?.name
         self.rpcData.artist = currentAMTrack?.artist
         self.rpcData.album = currentAMTrack?.album
 
@@ -100,7 +168,7 @@ class DiscordRPCObservable: ObservableObject {
             queue: nil
         ) { notification in
             self.logger.log("Received Apple Music notification: \(notification, privacy: .public)")
-            self.rpcData.track = notification.userInfo?[AnyHashable("Name")] as? String
+            self.rpcData.name = notification.userInfo?[AnyHashable("Name")] as? String
             self.rpcData.artist = notification.userInfo?[AnyHashable("Artist")] as? String
             self.rpcData.album = notification.userInfo?[AnyHashable("Album")] as? String
             self.rpcData.state = AMPlayerStates(rawValue: (notification.userInfo?[AnyHashable("Player State")] as? String)?.lowercased() ?? "stopped") ?? .stopped

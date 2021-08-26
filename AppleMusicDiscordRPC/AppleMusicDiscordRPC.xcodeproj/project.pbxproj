@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
+		2EEA817B26D74993009360AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* SettingsView.swift */; };
+		2EEA817D26D74D21009360AF /* SettingsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817C26D74D21009360AF /* SettingsEnums.swift */; };
 		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
 		2EF39E0F268D912200299C7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* ContentView.swift */; };
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
+		2EEA817A26D74993009360AF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2EEA817C26D74D21009360AF /* SettingsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEnums.swift; sourceTree = "<group>"; };
 		2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicDiscordRPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
 		2EF39E0E268D912200299C7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,9 +64,11 @@
 			isa = PBXGroup;
 			children = (
 				2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */,
+				2EEA817C26D74D21009360AF /* SettingsEnums.swift */,
 				2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */,
 				2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */,
 				2EF39E0E268D912200299C7F /* ContentView.swift */,
+				2EEA817A26D74993009360AF /* SettingsView.swift */,
 				2EF39E10268D912300299C7F /* Assets.xcassets */,
 				2EF39E15268D912300299C7F /* Info.plist */,
 				2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */,
@@ -154,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EEA817B26D74993009360AF /* SettingsView.swift in Sources */,
 				2EF39E0F268D912200299C7F /* ContentView.swift in Sources */,
 				2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */,
+				2EEA817D26D74D21009360AF /* SettingsEnums.swift in Sources */,
 				2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */,
 				2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */,
 			);

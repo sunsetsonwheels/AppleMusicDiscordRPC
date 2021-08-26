@@ -1,26 +1,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var rpcObservable: DiscordRPCObservable = DiscordRPCObservable()
+    @EnvironmentObject var rpcObservable: DiscordRPCObservable
+
     var body: some View {
         VStack {
             HStack {
                 Text("Track")
                     .bold()
                 Spacer()
-                Text(verbatim: rpcObservable.rpcData.track ?? self.rpcObservable.notPlayingText)
+                Text(verbatim: rpcObservable.rpcData.name ?? "")
             }
             HStack {
                 Text("Artist")
                     .bold()
                 Spacer()
-                Text(verbatim: rpcObservable.rpcData.artist ?? self.rpcObservable.notPlayingText)
+                Text(verbatim: rpcObservable.rpcData.artist ?? "")
             }
             HStack {
                 Text("Album")
                     .bold()
                 Spacer()
-                Text(verbatim: rpcObservable.rpcData.album ?? self.rpcObservable.unknownAlbumText)
+                Text(verbatim: rpcObservable.rpcData.album ?? "")
             }
             HStack {
                 Button(action: {
