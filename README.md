@@ -21,7 +21,7 @@ Icons by Flaticons. They can be found in this project @ `discord-icons`.
 
 SwordRPC originally by Alejandro Alonso. Addtional functionality added by Vincent Liw. Patched dependencies version used in this project is by Insu Byeon (chorym/SwordRPC).
 
-iTunes Scripting Bridge in Swift code taken from https://gist.github.com/pvieito/3aee709b97602bfc44961df575e2b696 and https://github.com/xzzz9097/Muse/blob/master/Muse/Sources/Controllers/iTunesHelper.swift.
+Music.app ScriptingBridge code generated using Tony Ingraldi's SwiftScripting, which I forked.
 
 ## Notice of Non-Affiliation and Disclaimer
 
