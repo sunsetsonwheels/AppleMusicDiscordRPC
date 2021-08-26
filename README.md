@@ -1,6 +1,9 @@
 # AppleMusicDiscordRPC
 Discord Rich Presence for Apple Music on macOS.
 
+- *No AppleScript polling!*
+- *100% SwiftUI!*
+
 ## Requirements
 To run this app, you will need to have the following requirements:
 
