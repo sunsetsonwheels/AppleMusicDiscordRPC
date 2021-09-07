@@ -37,7 +37,7 @@ struct SettingsView: View {
                     Text("Show Apple Music logo")
                 }
                 Toggle(isOn: self.$showVersionOnLargeImageHover) {
-                    Text("Show version on Apple Image logo hover")
+                    Text("Show version on Apple Music logo hover")
                 }.disabled(!self.showLargeImage)
                 Toggle(isOn: self.$showPlaybackState) {
                     Text("Show playback state")
