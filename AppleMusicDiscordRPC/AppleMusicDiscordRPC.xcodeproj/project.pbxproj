@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6E06E32711BD880028F77D /* SwordRPC */; };
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
 		2EEA817B26D74993009360AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* SettingsView.swift */; };
 		2EEA817D26D74D21009360AF /* SettingsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817C26D74D21009360AF /* SettingsEnums.swift */; };
@@ -15,7 +16,6 @@
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
 		2EF39E14268D912300299C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E13268D912300299C7F /* Preview Assets.xcassets */; };
 		2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */; };
-		2EF39E20268D91D100299C7F /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF39E1F268D91D100299C7F /* SwordRPC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF39E20268D91D100299C7F /* SwordRPC in Frameworks */,
+				2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 			);
 			name = AppleMusicDiscordRPC;
 			packageProductDependencies = (
-				2EF39E1F268D91D100299C7F /* SwordRPC */,
+				2E6E06E32711BD880028F77D /* SwordRPC */,
 			);
 			productName = AppleMusicRichPresence;
 			productReference = 2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */;
@@ -115,7 +115,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					2EF39E08268D912200299C7F = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -132,7 +132,7 @@
 			);
 			mainGroup = 2EF39E00268D912200299C7F;
 			packageReferences = (
-				2EF39E1E268D91D100299C7F /* XCRemoteSwiftPackageReference "SwordRPC" */,
+				2E6E06E22711BD880028F77D /* XCRemoteSwiftPackageReference "SwordRPC" */,
 			);
 			productRefGroup = 2EF39E0A268D912200299C7F /* Products */;
 			projectDirPath = "";
@@ -293,6 +293,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
@@ -304,7 +305,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -317,6 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
@@ -328,7 +330,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -359,9 +361,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2EF39E1E268D91D100299C7F /* XCRemoteSwiftPackageReference "SwordRPC" */ = {
+		2E6E06E22711BD880028F77D /* XCRemoteSwiftPackageReference "SwordRPC" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/chorim/SwordRPC.git";
+			repositoryURL = "https://github.com/PKBeam/SwordRPC";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -370,9 +372,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2EF39E1F268D91D100299C7F /* SwordRPC */ = {
+		2E6E06E32711BD880028F77D /* SwordRPC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EF39E1E268D91D100299C7F /* XCRemoteSwiftPackageReference "SwordRPC" */;
+			package = 2E6E06E22711BD880028F77D /* XCRemoteSwiftPackageReference "SwordRPC" */;
 			productName = SwordRPC;
 		};
 /* End XCSwiftPackageProductDependency section */

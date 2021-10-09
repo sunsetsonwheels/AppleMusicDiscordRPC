@@ -11,7 +11,7 @@ struct SettingsView: View {
     @AppStorage("ShowPlaybackState") var showPlaybackState: Bool = true
     @AppStorage("ShowRemainingTime") var showRemainingTime: Bool = true
     
-    var radioButtons: some View {
+    var pickerItems: some View {
         ForEach(TextSetting.allCases, id: \.self, content: { item in
             Text(item.rawValue).tag(item)
         })
@@ -21,13 +21,13 @@ struct SettingsView: View {
         TabView {
             Form {
                 Picker("Top text: ", selection: self.$topText) {
-                    self.radioButtons
+                    self.pickerItems
                 }
                 Picker("Bottom text: ", selection: self.$bottomText) {
-                    self.radioButtons
+                    self.pickerItems
                 }
                 Picker("Apple Music logo hover text: ", selection: self.$largeImageHoverText) {
-                    self.radioButtons
+                    self.pickerItems
                 }.disabled(!self.showLargeImage)
             }.tabItem {
                 Label("Text displays", systemImage: "text.justifyleft")
