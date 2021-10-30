@@ -19,9 +19,9 @@ To run this app, you will need to have the following requirements:
 ## Credits
 Icons by Flaticons. They can be found in this project @ `discord-icons`.
 
-SwordRPC originally by Alejandro Alonso. Addtional functionality added by Vincent Liw. Patched dependencies version used in this project is by Insu Byeon (chorym/SwordRPC).
+SwordRPC originally by @Azoy. Addtional functionality added by @PKBeam.
 
-Music.app ScriptingBridge code generated using Tony Ingraldi's SwiftScripting, which I forked.
+Music.app ScriptingBridge code generated using @tingraldi's SwiftScripting, which I forked.
 
 ## Notice of Non-Affiliation and Disclaimer
 
