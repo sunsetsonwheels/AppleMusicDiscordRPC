@@ -13,7 +13,6 @@ struct DiscordRPCData {
     var name: String?
     var artist: String?
     var album: String?
-    var startTime: Double?
     var totalTime: Double?
     var state: AMPlayerStates
 }
@@ -84,12 +83,12 @@ class DiscordRPCObservable: ObservableObject {
             
             if self.showRemainingTime &&
                 self.rpcData.state == .playing &&
-                self.rpcData.startTime != nil &&
+                self.AMApp?.playerPosition != nil &&
                 self.rpcData.totalTime != nil
             {
                 let currentTime: Date = Date()
                 presence.timestamps.start = currentTime
-                presence.timestamps.end = currentTime + (self.rpcData.totalTime! - self.rpcData.startTime!)
+                presence.timestamps.end = currentTime + (self.rpcData.totalTime! - self.AMApp!.playerPosition!)
             }
             
             if self.showLargeImage {
@@ -154,8 +153,7 @@ class DiscordRPCObservable: ObservableObject {
         default:
             self.rpcData.state = .stopped
         }
-        
-        self.rpcData.startTime = self.AMApp?.playerPosition
+
         self.rpcData.totalTime = currentAMTrack?.finish
         
         self.AMAppVersion = self.AMApp?.version
@@ -172,7 +170,6 @@ class DiscordRPCObservable: ObservableObject {
             self.rpcData.artist = notification.userInfo?[AnyHashable("Artist")] as? String
             self.rpcData.album = notification.userInfo?[AnyHashable("Album")] as? String
             self.rpcData.state = AMPlayerStates(rawValue: (notification.userInfo?[AnyHashable("Player State")] as? String)?.lowercased() ?? "stopped") ?? .stopped
-            self.rpcData.startTime = self.AMApp?.playerPosition
             self.rpcData.totalTime = self.AMApp?.currentTrack?.finish
             self.setRPC()
         }
