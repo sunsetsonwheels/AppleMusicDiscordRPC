@@ -9,27 +9,27 @@
 /* Begin PBXBuildFile section */
 		2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6E06E32711BD880028F77D /* SwordRPC */; };
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
-		2EEA817B26D74993009360AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* SettingsView.swift */; };
-		2EEA817D26D74D21009360AF /* SettingsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817C26D74D21009360AF /* SettingsEnums.swift */; };
+		2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* PreferencesView.swift */; };
+		2EF0AC312813E5F600EEDC5F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */; };
 		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
-		2EF39E0F268D912200299C7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* ContentView.swift */; };
+		2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* RPCStatusView.swift */; };
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
 		2EF39E14268D912300299C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E13268D912300299C7F /* Preview Assets.xcassets */; };
-		2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */; };
+		2EF39E1D268D913A00299C7F /* DiscordRPCObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
-		2EEA817A26D74993009360AF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2EEA817C26D74D21009360AF /* SettingsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEnums.swift; sourceTree = "<group>"; };
-		2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicDiscordRPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEA817A26D74993009360AF /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Music Discord RPC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
-		2EF39E0E268D912200299C7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2EF39E0E268D912200299C7F /* RPCStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCStatusView.swift; sourceTree = "<group>"; };
 		2EF39E10268D912300299C7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EF39E13268D912300299C7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EF39E15268D912300299C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppleMusicDiscordRPC.entitlements; sourceTree = "<group>"; };
-		2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordRichPresence.swift; sourceTree = "<group>"; };
+		2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordRPCObservable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +44,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EF0AC322813EBB100EEDC5F /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */,
+				2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		2EF0AC332813EBC000EEDC5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2EF39E0E268D912200299C7F /* RPCStatusView.swift */,
+				2EEA817A26D74993009360AF /* PreferencesView.swift */,
+				2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2EF39E00268D912200299C7F = {
 			isa = PBXGroup;
 			children = (
@@ -55,7 +74,7 @@
 		2EF39E0A268D912200299C7F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */,
+				2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,12 +82,9 @@
 		2EF39E0B268D912200299C7F /* AppleMusicDiscordRPC */ = {
 			isa = PBXGroup;
 			children = (
-				2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */,
-				2EEA817C26D74D21009360AF /* SettingsEnums.swift */,
-				2EF39E1C268D913A00299C7F /* DiscordRichPresence.swift */,
+				2EF0AC322813EBB100EEDC5F /* Modals */,
+				2EF0AC332813EBC000EEDC5F /* Views */,
 				2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */,
-				2EF39E0E268D912200299C7F /* ContentView.swift */,
-				2EEA817A26D74993009360AF /* SettingsView.swift */,
 				2EF39E10268D912300299C7F /* Assets.xcassets */,
 				2EF39E15268D912300299C7F /* Info.plist */,
 				2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */,
@@ -88,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2EF39E08268D912200299C7F /* AppleMusicDiscordRPC */ = {
+		2EF39E08268D912200299C7F /* Apple Music Discord RPC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2EF39E19268D912300299C7F /* Build configuration list for PBXNativeTarget "AppleMusicDiscordRPC" */;
+			buildConfigurationList = 2EF39E19268D912300299C7F /* Build configuration list for PBXNativeTarget "Apple Music Discord RPC" */;
 			buildPhases = (
 				2EF39E05268D912200299C7F /* Sources */,
 				2EF39E06268D912200299C7F /* Frameworks */,
@@ -100,12 +116,12 @@
 			);
 			dependencies = (
 			);
-			name = AppleMusicDiscordRPC;
+			name = "Apple Music Discord RPC";
 			packageProductDependencies = (
 				2E6E06E32711BD880028F77D /* SwordRPC */,
 			);
 			productName = AppleMusicRichPresence;
-			productReference = 2EF39E09268D912200299C7F /* AppleMusicDiscordRPC.app */;
+			productReference = 2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -138,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2EF39E08268D912200299C7F /* AppleMusicDiscordRPC */,
+				2EF39E08268D912200299C7F /* Apple Music Discord RPC */,
 			);
 		};
 /* End PBXProject section */
@@ -160,10 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EEA817B26D74993009360AF /* SettingsView.swift in Sources */,
-				2EF39E0F268D912200299C7F /* ContentView.swift in Sources */,
-				2EF39E1D268D913A00299C7F /* DiscordRichPresence.swift in Sources */,
-				2EEA817D26D74D21009360AF /* SettingsEnums.swift in Sources */,
+				2EF0AC312813E5F600EEDC5F /* RootNavigationView.swift in Sources */,
+				2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */,
+				2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */,
+				2EF39E1D268D913A00299C7F /* DiscordRPCObservable.swift in Sources */,
 				2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */,
 				2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */,
 			);
@@ -296,6 +312,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -306,7 +323,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -322,6 +339,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -332,7 +350,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -351,7 +369,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2EF39E19268D912300299C7F /* Build configuration list for PBXNativeTarget "AppleMusicDiscordRPC" */ = {
+		2EF39E19268D912300299C7F /* Build configuration list for PBXNativeTarget "Apple Music Discord RPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EF39E1A268D912300299C7F /* Debug */,

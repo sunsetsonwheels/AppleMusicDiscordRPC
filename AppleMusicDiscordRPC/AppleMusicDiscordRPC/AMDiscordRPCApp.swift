@@ -1,19 +1,33 @@
 import SwiftUI
 
+enum AppView {
+    case rpcStatus
+    case preferences
+}
+
 @main
 struct AMDiscordRPCApp: App {
-    @StateObject var rpcObservable: DiscordRPCObservable = DiscordRPCObservable()
+    @StateObject private var rpcObservable: DiscordRPCObservable = DiscordRPCObservable()
+
+    @State private var selectedView: AppView? = .rpcStatus
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(self.rpcObservable)
-        }.commands {
+            RootNavigationView(selectedView: self.$selectedView)
+                .environmentObject(self.rpcObservable)
+                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { output in
+                    self.rpcObservable.disconnectFromDiscord()
+                }
+        }
+        .commands {
+            CommandGroup(replacing: .appSettings) {
+                Button("Preferences...") {
+                    self.selectedView = .preferences
+                }
+                .keyboardShortcut(",")
+            }
             CommandGroup(replacing: .newItem) {}
             CommandGroup(replacing: .help) {}
-        }
-
-        Settings {
-            SettingsView().environmentObject(self.rpcObservable)
         }
     }
 }

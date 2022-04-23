@@ -17,12 +17,16 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Used to retrieve currently Apple Music track information.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2022-present Nam Thành Nguyễn (jkelol111) et. al.
+
+Licensed under the GPL v3. A copy of the license can be found in the source code.</string>
 </dict>
 </plist>

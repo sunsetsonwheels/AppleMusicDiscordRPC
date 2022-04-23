@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2EF39E08268D912200299C7F"
                BuildableName = "AppleMusicDiscordRPC.app"
-               BlueprintName = "AppleMusicDiscordRPC"
+               BlueprintName = "Apple Music Discord RPC"
                ReferencedContainer = "container:AppleMusicDiscordRPC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2EF39E08268D912200299C7F"
             BuildableName = "AppleMusicDiscordRPC.app"
-            BlueprintName = "AppleMusicDiscordRPC"
+            BlueprintName = "Apple Music Discord RPC"
             ReferencedContainer = "container:AppleMusicDiscordRPC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2EF39E08268D912200299C7F"
             BuildableName = "AppleMusicDiscordRPC.app"
-            BlueprintName = "AppleMusicDiscordRPC"
+            BlueprintName = "Apple Music Discord RPC"
             ReferencedContainer = "container:AppleMusicDiscordRPC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

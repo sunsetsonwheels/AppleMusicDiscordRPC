@@ -42,6 +42,5 @@ extension SBObject: MusicTrack {}
     @objc optional var currentTrack: MusicTrack { get } // the current targeted track
     @objc optional var playerState: MusicEPlS { get } // is the player stopped, paused, or playing?
     @objc optional var playerPosition: Double { get } // the player’s position within the currently playing track in seconds.
-    @objc optional var version: String { get } // the version of the application
 }
 extension SBApplication: MusicApplication {}
