@@ -21,6 +21,13 @@ To run this app, you will need to have the following requirements:
 1. Have Discord and Music.app open.
 2. Launch `Apple Music Discord RPC.app`
 
+## Known issues
+- Album art may not match the one in Music.app
+  - **Causes**: This is because we're searching the track using the iTunes API and picking the first result.
+  - **Resolution**: None yet. If there's a way to take the artwork directly from Music.app and set it for Discord, let me know.
+- Skipping/changing tracks too often leads to RPC not being updated temporarily.
+  - **Causes**: Discord rate-limits RPC updates, so does iTunes' API.
+  - **Resolution**: Try pausing the track, waiting a second, then playing again.
 
 ## Build instructions
 1. Go to AppleMusicDiscordRPC.xcodeproj ->  AppleMusicDiscordRPC target -> Signing and Capabilities and configure it to your desired account.
