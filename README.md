@@ -35,6 +35,18 @@ To run this app, you will need to have the following requirements:
 3. ???
 4. If it works, horray!
 
+## Generating `appcast.xml`
+Unless you're planning to contribute an update here, you don't really have to do this yourself (this is more of a personal reminder for me). I will periodically publish new updates which can be installed with version 1.2.0 onwards.
+
+1. Look for Sparkle in the Xcode sidebar, right click it and choose 'Show in Finder'
+2. In the Finder window, navigate to `../artifacts/bin`
+3. Open a terminal in above directory and run `./generate_appcast /path/to/folder/with/built/zips`
+4. Fix the path of the new update to the GitHub Release.
+5. Copy the new `appcast.xml` to the repository root.
+6. Push the changes to `main` for publishing.
+
+Once you already have that new `appcast.xml` in step 3, keep it in the same directory for future use.
+
 ## Credits
 Icons by Flaticons. They can be found in this project @ `discord-icons`.
 
