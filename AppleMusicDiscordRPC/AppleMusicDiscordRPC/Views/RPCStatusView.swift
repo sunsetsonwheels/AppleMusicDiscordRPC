@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RPCStatusView: View {
-    @EnvironmentObject var rpcObservable: DiscordRPCObservable
+    @ObservedObject var rpcObservable: DiscordRPCObservable
     
     var noArtwork: some View {
         Image("NoArtwork")
@@ -70,11 +70,5 @@ struct RPCStatusView: View {
         }
         .navigationSubtitle("Status")
         .padding()
-    }
-}
-
-struct RPCStatusView_Previews: PreviewProvider {
-    static var previews: some View {
-        RPCStatusView()
     }
 }

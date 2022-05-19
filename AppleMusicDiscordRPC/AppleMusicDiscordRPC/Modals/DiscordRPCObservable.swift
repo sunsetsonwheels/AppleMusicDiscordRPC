@@ -3,35 +3,35 @@ import ScriptingBridge
 import SwordRPC
 import os
 
-fileprivate struct iTunesQueryResults: Decodable {
-    let artworkUrl100: String
-}
-
-fileprivate struct iTunesQueryResponse: Decodable {
-    let resultCount: Int
-    let results: [iTunesQueryResults]
-}
-
-enum AMPlayerStates: String {
-    case playing = "playing"
-    case paused = "paused"
-    case stopped = "stopped"
-}
-
-struct DiscordRPCData {
-    var name: String?
-    var artist: String?
-    var album: String?
-    var totalTime: Double?
-    var state: AMPlayerStates
-}
-
-struct AMArtwork {
-    var album: String?
-    var url: String?
-}
-
 class DiscordRPCObservable: ObservableObject {
+    private struct iTunesQueryResults: Decodable {
+        let artworkUrl100: String
+    }
+
+    private struct iTunesQueryResponse: Decodable {
+        let resultCount: Int
+        let results: [iTunesQueryResults]
+    }
+
+    enum AMPlayerStates: String {
+        case playing = "playing"
+        case paused = "paused"
+        case stopped = "stopped"
+    }
+
+    struct DiscordRPCData {
+        var name: String?
+        var artist: String?
+        var album: String?
+        var totalTime: Double?
+        var state: AMPlayerStates
+    }
+
+    struct AMArtwork {
+        var album: String?
+        var url: String?
+    }
+
     @Published var rpcData: DiscordRPCData = DiscordRPCData(state: .stopped)
     @Published var artwork: AMArtwork = AMArtwork()
 

@@ -2,6 +2,8 @@ import SwiftUI
 
 struct RootNavigationView: View {
     @Binding var selectedView: AppView?
+    @ObservedObject var rpcObservable: DiscordRPCObservable
+    @ObservedObject var sparkleObservable: SparkleObservable
 
     var body: some View {
         NavigationView {
@@ -10,7 +12,7 @@ struct RootNavigationView: View {
                     tag: AppView.rpcStatus,
                     selection: self.$selectedView,
                     destination: {
-                        RPCStatusView()
+                        RPCStatusView(rpcObservable: self.rpcObservable)
                     }
                 ) {
                     Label("Status", systemImage: "info.circle")
@@ -19,7 +21,10 @@ struct RootNavigationView: View {
                     tag: AppView.preferences,
                     selection: self.$selectedView,
                     destination: {
-                        PreferencesView()
+                        PreferencesView(
+                            rpcObservable: self.rpcObservable,
+                            sparkleObservable: self.sparkleObservable
+                        )
                     }
                 ) {
                     Label("Preferences", systemImage: "gearshape")
@@ -29,11 +34,5 @@ struct RootNavigationView: View {
         }
         .navigationTitle("Apple Music Discord RPC")
         .frame(width: 430, height: 350)
-    }
-}
-
-struct RootNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootNavigationView(selectedView: .constant(.rpcStatus))
     }
 }

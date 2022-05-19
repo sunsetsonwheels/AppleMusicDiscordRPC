@@ -28,5 +28,9 @@
 	<string>© 2022-present Nam Thành Nguyễn (jkelol111) et. al.
 
 Licensed under the GPL v3. A copy of the license can be found in the source code.</string>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/jkelol111/AppleMusicDiscordRPC/main/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>XPWtCSFedtgJQkmL90hkuDFmrwzdWEjX6WrFu8Xlqs4=</string>
 </dict>
 </plist>

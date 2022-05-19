@@ -1,21 +1,33 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @EnvironmentObject var rpcObservable: DiscordRPCObservable
+    @ObservedObject var rpcObservable: DiscordRPCObservable
+    @ObservedObject var sparkleObservable: SparkleObservable
 
-    @AppStorage("showAlbumArt") var showAlbumArt: Bool = true
+    @AppStorage("showAlbumArt") private var showAlbumArt: Bool = true
+    @AppStorage("SUEnableAutomaticChecks") private var shouldCheckUpdates: Bool = false
     
     var body: some View {
         Form {
             Toggle(isOn: self.$showAlbumArt) {
                 Text("Show album art")
             }
-            Text("Disabling this will display Apple Music's logo instead.")
-            Text("We recommend disabling if you have a slow network connection.")
+            Text("Disabling this will display Apple Music's logo instead. Disable if you have a slow connection.")
+            Toggle(isOn: self.$shouldCheckUpdates) {
+                Text("Automatically check for updates")
+            }
+            Text("Checks and downloads updates automatically from GitHub.")
         }
         .padding(20)
         .onChange(of: self.showAlbumArt) { _ in
-            self.rpcObservable.setRPC()
+            DispatchQueue.main.async {
+                self.rpcObservable.setRPC()
+            }
+        }
+        .onChange(of: self.shouldCheckUpdates) { _ in
+            DispatchQueue.main.async {
+                self.sparkleObservable.automaticallyCheckForUpdates = self.shouldCheckUpdates
+            }
         }
         .toolbar {
             ToolbarItem {
@@ -25,11 +37,5 @@ struct PreferencesView: View {
             }
         }
         .navigationSubtitle("Preferences")
-    }
-}
-
-struct PreferencesView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreferencesView()
     }
 }

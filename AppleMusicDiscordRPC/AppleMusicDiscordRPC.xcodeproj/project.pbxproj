@@ -11,6 +11,8 @@
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
 		2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* PreferencesView.swift */; };
 		2EF0AC312813E5F600EEDC5F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */; };
+		2EF147612836866100DBD1ED /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF147602836866100DBD1ED /* Sparkle */; };
+		2EF147632836881300DBD1ED /* SparkleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF147622836881300DBD1ED /* SparkleObservable.swift */; };
 		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
 		2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* RPCStatusView.swift */; };
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
@@ -22,6 +24,7 @@
 		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
 		2EEA817A26D74993009360AF /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		2EF147622836881300DBD1ED /* SparkleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleObservable.swift; sourceTree = "<group>"; };
 		2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Music Discord RPC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
 		2EF39E0E268D912200299C7F /* RPCStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCStatusView.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */,
+				2EF147612836866100DBD1ED /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +53,7 @@
 			children = (
 				2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */,
 				2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */,
+				2EF147622836881300DBD1ED /* SparkleObservable.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			name = "Apple Music Discord RPC";
 			packageProductDependencies = (
 				2E6E06E32711BD880028F77D /* SwordRPC */,
+				2EF147602836866100DBD1ED /* Sparkle */,
 			);
 			productName = AppleMusicRichPresence;
 			productReference = 2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */;
@@ -149,6 +155,7 @@
 			mainGroup = 2EF39E00268D912200299C7F;
 			packageReferences = (
 				2E6E06E22711BD880028F77D /* XCRemoteSwiftPackageReference "SwordRPC" */,
+				2EF1475F2836866100DBD1ED /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 2EF39E0A268D912200299C7F /* Products */;
 			projectDirPath = "";
@@ -181,6 +188,7 @@
 				2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */,
 				2EF39E1D268D913A00299C7F /* DiscordRPCObservable.swift in Sources */,
 				2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */,
+				2EF147632836881300DBD1ED /* SparkleObservable.swift in Sources */,
 				2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,10 +317,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -323,7 +331,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -336,10 +344,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -350,7 +358,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -389,6 +397,14 @@
 				kind = branch;
 			};
 		};
+		2EF1475F2836866100DBD1ED /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -396,6 +412,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2E6E06E22711BD880028F77D /* XCRemoteSwiftPackageReference "SwordRPC" */;
 			productName = SwordRPC;
+		};
+		2EF147602836866100DBD1ED /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EF1475F2836866100DBD1ED /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

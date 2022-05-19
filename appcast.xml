@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Apple Music Discord RPC</title>
+        <item>
+            <title>1.2.0</title>
+            <pubDate>Thu, 19 May 2022 22:29:27 +0700</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/jkelol111/AppleMusicDiscordRPC/releases/download/1.2.0/AppleMusicDiscordRPC-1.2.0.zip" length="1628383" type="application/octet-stream" sparkle:edSignature="t+qV9BGQmVGoOiMgCFJiUeHhYvn7+XuS13CLz3gPQQykfCosWmyUpfQpuqS/E2yGuGiw+cazMF46EtcAn0kMCw=="/>
+        </item>
+        <item>
+            <title>1.1.0</title>
+            <pubDate>Thu, 19 May 2022 21:54:28 +0700</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/jkelol111/AppleMusicDiscordRPC/releases/download/1.1.0/AppleMusicDiscordRPC-1.1.0.zip" length="347632" type="application/octet-stream"/>
+        </item>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Thu, 19 May 2022 21:55:12 +0700</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/jkelol111/AppleMusicDiscordRPC/releases/download/1.0.0/AppleMusicDiscordRPC-1.0.0.zip" length="253785" type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>
