@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6E06E32711BD880028F77D /* SwordRPC */; };
+		2E8459E62853854D00169D53 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8459E52853854D00169D53 /* MenuBarView.swift */; };
+		2E8459F02853ADB500169D53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8459EF2853ADB500169D53 /* InfoView.swift */; };
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
 		2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* PreferencesView.swift */; };
-		2EF0AC312813E5F600EEDC5F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */; };
 		2EF147612836866100DBD1ED /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF147602836866100DBD1ED /* Sparkle */; };
 		2EF147632836881300DBD1ED /* SparkleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF147622836881300DBD1ED /* SparkleObservable.swift */; };
 		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
@@ -21,9 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E8459E52853854D00169D53 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		2E8459EF2853ADB500169D53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
 		2EEA817A26D74993009360AF /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
-		2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		2EF147622836881300DBD1ED /* SparkleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleObservable.swift; sourceTree = "<group>"; };
 		2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Music Discord RPC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
@@ -63,7 +65,8 @@
 			children = (
 				2EF39E0E268D912200299C7F /* RPCStatusView.swift */,
 				2EEA817A26D74993009360AF /* PreferencesView.swift */,
-				2EF0AC302813E5F600EEDC5F /* RootNavigationView.swift */,
+				2E8459EF2853ADB500169D53 /* InfoView.swift */,
+				2E8459E52853854D00169D53 /* MenuBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					2EF39E08268D912200299C7F = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -183,7 +186,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF0AC312813E5F600EEDC5F /* RootNavigationView.swift in Sources */,
+				2E8459F02853ADB500169D53 /* InfoView.swift in Sources */,
+				2E8459E62853854D00169D53 /* MenuBarView.swift in Sources */,
 				2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */,
 				2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */,
 				2EF39E1D268D913A00299C7F /* DiscordRPCObservable.swift in Sources */,
@@ -230,6 +234,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -247,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -291,6 +296,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -302,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -320,18 +326,20 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AppleMusicDiscordRPC/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.2.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -347,18 +355,20 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AppleMusicDiscordRPC/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.2.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.jkelol111.AppleMusicDiscordRPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -86,38 +86,46 @@ class DiscordRPCObservable: ObservableObject {
                     URLSession.shared.dataTask(
                         with: request,
                         completionHandler: { data, response, error in
-                            if let error = error {
+                            if let error {
                                 self.logger.error("Unable to fetch artwork: \(error.localizedDescription, privacy: .public)")
                                 presence.assets.largeImage = "applemusic_large"
-                                self.artwork.url = nil
+                                DispatchQueue.main.sync {
+                                    self.artwork.url = nil
+                                }
                                 self.rpc.setPresence(presence)
                             }
-                            if let data = data {
+                            if let data {
                                 if let iTunesResponse: iTunesQueryResponse = try? self.jsond.decode(iTunesQueryResponse.self, from: data) {
                                     if iTunesResponse.resultCount > 0 {
-                                        let artworkURL: String = iTunesResponse.results.first!.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "512x512")
+                                        let artworkURL: String = iTunesResponse.results.first!.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
                                         self.logger.info("Fetched artwork: \(artworkURL, privacy: .public)")
                                         presence.assets.largeImage = artworkURL
-                                        DispatchQueue.main.async {
+                                        DispatchQueue.main.sync {
                                             self.artwork.album = album
                                             self.artwork.url = artworkURL
                                         }
                                     } else {
                                         self.logger.warning("No artwork found. Setting default image.")
                                         presence.assets.largeImage = "applemusic_large"
-                                        self.artwork.url = nil
+                                        DispatchQueue.main.sync {
+                                            self.artwork.url = nil
+                                        }
                                     }
                                     self.rpc.setPresence(presence)
                                 } else {
                                     self.logger.warning("Could not parse iTunes response. Setting default image.")
                                     presence.assets.largeImage = "applemusic_large"
-                                    self.artwork.url = nil
+                                    DispatchQueue.main.sync {
+                                        self.artwork.url = nil
+                                    }
                                     self.rpc.setPresence(presence)
                                 }
                             } else {
                                 self.logger.warning("No artwork found. Setting default image.")
                                 presence.assets.largeImage = "applemusic_large"
-                                self.artwork.url = nil
+                                DispatchQueue.main.sync {
+                                    self.artwork.url = nil
+                                }
                                 self.rpc.setPresence(presence)
                             }
                         }
@@ -131,7 +139,6 @@ class DiscordRPCObservable: ObservableObject {
                 }
             } else {
                 presence.assets.largeImage = "applemusic_large"
-                self.artwork.url = nil
                 self.rpc.setPresence(presence)
             }
         }
@@ -139,9 +146,26 @@ class DiscordRPCObservable: ObservableObject {
     
     func manuallyUpdateRPCData () {
         let currentAMTrack: MusicTrack? = self.AMApp?.currentTrack
-        self.rpcData.name = currentAMTrack?.name
-        self.rpcData.artist = currentAMTrack?.artist
-        self.rpcData.album = currentAMTrack?.album
+        
+        // Check for empty strings, seems to be some weird behaviour with >= Monterey Music.app
+        if let name: String = currentAMTrack?.name,
+           !name.isEmpty {
+            self.rpcData.name = name
+        } else {
+            self.rpcData.name = nil
+        }
+        if let artist: String = currentAMTrack?.artist,
+           !artist.isEmpty {
+            self.rpcData.artist = artist
+        } else {
+            self.rpcData.artist = nil
+        }
+        if let album: String = currentAMTrack?.album,
+           !album.isEmpty {
+            self.rpcData.album = album
+        } else {
+            self.rpcData.album = nil
+        }
 
         switch self.AMApp?.playerState {
         case .playing?,
