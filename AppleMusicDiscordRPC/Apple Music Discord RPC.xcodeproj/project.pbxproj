@@ -17,7 +17,6 @@
 		2EF39E0D268D912200299C7F /* AMDiscordRPCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */; };
 		2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E0E268D912200299C7F /* RPCStatusView.swift */; };
 		2EF39E11268D912300299C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E10268D912300299C7F /* Assets.xcassets */; };
-		2EF39E14268D912300299C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF39E13268D912300299C7F /* Preview Assets.xcassets */; };
 		2EF39E1D268D913A00299C7F /* DiscordRPCObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +30,8 @@
 		2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDiscordRPCApp.swift; sourceTree = "<group>"; };
 		2EF39E0E268D912200299C7F /* RPCStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCStatusView.swift; sourceTree = "<group>"; };
 		2EF39E10268D912300299C7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2EF39E13268D912300299C7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2EF39E15268D912300299C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppleMusicDiscordRPC.entitlements; sourceTree = "<group>"; };
+		2EF39E16268D912300299C7F /* Apple Music Discord RPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Apple Music Discord RPC.entitlements"; sourceTree = "<group>"; };
 		2EF39E1C268D913A00299C7F /* DiscordRPCObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordRPCObservable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +72,12 @@
 		2EF39E00268D912200299C7F = {
 			isa = PBXGroup;
 			children = (
-				2EF39E0B268D912200299C7F /* AppleMusicDiscordRPC */,
+				2EF0AC322813EBB100EEDC5F /* Modals */,
+				2EF0AC332813EBC000EEDC5F /* Views */,
+				2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */,
+				2EF39E10268D912300299C7F /* Assets.xcassets */,
+				2EF39E15268D912300299C7F /* Info.plist */,
+				2EF39E16268D912300299C7F /* Apple Music Discord RPC.entitlements */,
 				2EF39E0A268D912200299C7F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,28 +88,6 @@
 				2EF39E09268D912200299C7F /* Apple Music Discord RPC.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2EF39E0B268D912200299C7F /* AppleMusicDiscordRPC */ = {
-			isa = PBXGroup;
-			children = (
-				2EF0AC322813EBB100EEDC5F /* Modals */,
-				2EF0AC332813EBC000EEDC5F /* Views */,
-				2EF39E0C268D912200299C7F /* AMDiscordRPCApp.swift */,
-				2EF39E10268D912300299C7F /* Assets.xcassets */,
-				2EF39E15268D912300299C7F /* Info.plist */,
-				2EF39E16268D912300299C7F /* AppleMusicDiscordRPC.entitlements */,
-				2EF39E12268D912300299C7F /* Preview Content */,
-			);
-			path = AppleMusicDiscordRPC;
-			sourceTree = "<group>";
-		};
-		2EF39E12268D912300299C7F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2EF39E13268D912300299C7F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +128,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2EF39E04268D912200299C7F /* Build configuration list for PBXProject "AppleMusicDiscordRPC" */;
+			buildConfigurationList = 2EF39E04268D912200299C7F /* Build configuration list for PBXProject "Apple Music Discord RPC" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -174,7 +155,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF39E14268D912300299C7F /* Preview Assets.xcassets in Resources */,
 				2EF39E11268D912300299C7F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,17 +302,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Apple Music Discord RPC.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = AppleMusicDiscordRPC/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -351,17 +331,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AppleMusicDiscordRPC/AppleMusicDiscordRPC.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Apple Music Discord RPC.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"AppleMusicDiscordRPC/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2VZNUT7D2E;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = AppleMusicDiscordRPC/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,7 +358,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2EF39E04268D912200299C7F /* Build configuration list for PBXProject "AppleMusicDiscordRPC" */ = {
+		2EF39E04268D912200299C7F /* Build configuration list for PBXProject "Apple Music Discord RPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EF39E17268D912300299C7F /* Debug */,
