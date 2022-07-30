@@ -12,7 +12,7 @@ struct MenuBarView: View {
                 rpcObservable: self.rpcObservable,
                 sparkleObservable: self.sparkleObservable
             )
-            InfoView(
+            MiscView(
                 rpcObservable: self.rpcObservable
             )
         }

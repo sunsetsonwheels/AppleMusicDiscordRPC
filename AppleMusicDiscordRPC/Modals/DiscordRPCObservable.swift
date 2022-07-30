@@ -69,67 +69,63 @@ class DiscordRPCObservable: ObservableObject {
             
             presence.assets.largeText = self.rpcData.album
             if self.showAlbumArt,
-               let name: String = self.rpcData.name,
-               let album: String = self.rpcData.album,
-               let artist: String = self.rpcData.artist {
+               let album: String = self.rpcData.album {
                 if self.artwork.album == album {
                     self.logger.info("Album identical, not replacing artwork URL.")
                     presence.assets.largeImage = self.artwork.url
                     self.rpc.setPresence(presence)
                     return
                 }
-                self.logger.info("Fetching artwork for: \(name, privacy: .public), \(album, privacy: .public), \(artist, privacy: .public)")
-                let encodedTerms: String = "\(name) \(album) \(artist)".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-                if let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedTerms)&media=music&entity=song&limit=1") {
+                self.logger.info("Fetching artwork for: \(album, privacy: .public)")
+                let encodedAlbum: String = album.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                if let country: String = Locale.current.regionCode,
+                   let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedAlbum)&media=music&entity=album&country=\(country)&limit=1") {
                     var request: URLRequest = URLRequest(url: url)
                     request.timeoutInterval = 2
-                    URLSession.shared.dataTask(
-                        with: request,
-                        completionHandler: { data, response, error in
-                            if let error {
-                                self.logger.error("Unable to fetch artwork: \(error.localizedDescription, privacy: .public)")
-                                presence.assets.largeImage = "applemusic_large"
-                                DispatchQueue.main.sync {
-                                    self.artwork.url = nil
-                                }
-                                self.rpc.setPresence(presence)
+                    URLSession.shared.dataTask(with: request) { data, response, error in
+                        if let error {
+                            self.logger.error("Unable to fetch artwork: \(error.localizedDescription, privacy: .public)")
+                            presence.assets.largeImage = "applemusic_large"
+                            DispatchQueue.main.sync {
+                                self.artwork.url = nil
                             }
-                            if let data {
-                                if let iTunesResponse: iTunesQueryResponse = try? self.jsond.decode(iTunesQueryResponse.self, from: data) {
-                                    if iTunesResponse.resultCount > 0 {
-                                        let artworkURL: String = iTunesResponse.results.first!.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
-                                        self.logger.info("Fetched artwork: \(artworkURL, privacy: .public)")
-                                        presence.assets.largeImage = artworkURL
-                                        DispatchQueue.main.sync {
-                                            self.artwork.album = album
-                                            self.artwork.url = artworkURL
-                                        }
-                                    } else {
-                                        self.logger.warning("No artwork found. Setting default image.")
-                                        presence.assets.largeImage = "applemusic_large"
-                                        DispatchQueue.main.sync {
-                                            self.artwork.url = nil
-                                        }
+                            self.rpc.setPresence(presence)
+                        }
+                        if let data {
+                            if let iTunesResponse: iTunesQueryResponse = try? self.jsond.decode(iTunesQueryResponse.self, from: data) {
+                                if iTunesResponse.resultCount > 0 {
+                                    let artworkURL: String = iTunesResponse.results.first!.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
+                                    self.logger.info("Fetched artwork: \(artworkURL, privacy: .public)")
+                                    presence.assets.largeImage = artworkURL
+                                    DispatchQueue.main.sync {
+                                        self.artwork.album = album
+                                        self.artwork.url = artworkURL
                                     }
-                                    self.rpc.setPresence(presence)
                                 } else {
-                                    self.logger.warning("Could not parse iTunes response. Setting default image.")
+                                    self.logger.warning("No artwork found. Setting default image.")
                                     presence.assets.largeImage = "applemusic_large"
                                     DispatchQueue.main.sync {
                                         self.artwork.url = nil
                                     }
-                                    self.rpc.setPresence(presence)
                                 }
+                                self.rpc.setPresence(presence)
                             } else {
-                                self.logger.warning("No artwork found. Setting default image.")
+                                self.logger.warning("Could not parse iTunes response. Setting default image.")
                                 presence.assets.largeImage = "applemusic_large"
                                 DispatchQueue.main.sync {
                                     self.artwork.url = nil
                                 }
                                 self.rpc.setPresence(presence)
                             }
+                        } else {
+                            self.logger.warning("No artwork found. Setting default image.")
+                            presence.assets.largeImage = "applemusic_large"
+                            DispatchQueue.main.sync {
+                                self.artwork.url = nil
+                            }
+                            self.rpc.setPresence(presence)
                         }
-                    )
+                    }
                     .resume()
                 } else {
                     self.logger.warning("Can't form iTunes search URL. Setting default image.")
@@ -225,6 +221,8 @@ class DiscordRPCObservable: ObservableObject {
             DispatchQueue.main.async {
                 self.unsubAMNotifications()
                 self.isDiscordConnected = false
+                self.rpcData = DiscordRPCData(state: .stopped)
+                self.artwork = AMArtwork()
                 self.isChangingConnectionStatus = false
             }
             self.logger.log("Disconnected from Discord RPC.")

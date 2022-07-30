@@ -1,8 +1,6 @@
-
-
 import SwiftUI
 
-struct InfoView: View {
+struct MiscView: View {
     @ObservedObject var rpcObservable: DiscordRPCObservable
     
     var body: some View {

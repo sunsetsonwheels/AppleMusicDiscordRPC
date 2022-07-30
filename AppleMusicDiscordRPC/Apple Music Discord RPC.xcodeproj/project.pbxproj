@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E6E06E42711BD880028F77D /* SwordRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6E06E32711BD880028F77D /* SwordRPC */; };
 		2E8459E62853854D00169D53 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8459E52853854D00169D53 /* MenuBarView.swift */; };
-		2E8459F02853ADB500169D53 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8459EF2853ADB500169D53 /* InfoView.swift */; };
+		2E8459F02853ADB500169D53 /* MiscView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8459EF2853ADB500169D53 /* MiscView.swift */; };
 		2EA352FD26D5201900271909 /* MusicScriptingBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */; };
 		2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA817A26D74993009360AF /* PreferencesView.swift */; };
 		2EF147612836866100DBD1ED /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF147602836866100DBD1ED /* Sparkle */; };
@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2E8459E52853854D00169D53 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
-		2E8459EF2853ADB500169D53 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		2E8459EF2853ADB500169D53 /* MiscView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscView.swift; sourceTree = "<group>"; };
 		2EA352FC26D5201900271909 /* MusicScriptingBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScriptingBridge.swift; sourceTree = "<group>"; };
 		2EEA817A26D74993009360AF /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		2EF147622836881300DBD1ED /* SparkleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleObservable.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			children = (
 				2EF39E0E268D912200299C7F /* RPCStatusView.swift */,
 				2EEA817A26D74993009360AF /* PreferencesView.swift */,
-				2E8459EF2853ADB500169D53 /* InfoView.swift */,
+				2E8459EF2853ADB500169D53 /* MiscView.swift */,
 				2E8459E52853854D00169D53 /* MenuBarView.swift */,
 			);
 			path = Views;
@@ -166,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8459F02853ADB500169D53 /* InfoView.swift in Sources */,
+				2E8459F02853ADB500169D53 /* MiscView.swift in Sources */,
 				2E8459E62853854D00169D53 /* MenuBarView.swift in Sources */,
 				2EEA817B26D74993009360AF /* PreferencesView.swift in Sources */,
 				2EF39E0F268D912200299C7F /* RPCStatusView.swift in Sources */,
