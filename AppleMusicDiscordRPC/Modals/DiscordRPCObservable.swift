@@ -69,7 +69,8 @@ class DiscordRPCObservable: ObservableObject {
             
             presence.assets.largeText = self.rpcData.album
             if self.showAlbumArt,
-               let album: String = self.rpcData.album {
+               let album: String = self.rpcData.album,
+               let artist: String = self.rpcData.artist {
                 if self.artwork.album == album {
                     self.logger.info("Album identical, not replacing artwork URL.")
                     presence.assets.largeImage = self.artwork.url
@@ -77,9 +78,9 @@ class DiscordRPCObservable: ObservableObject {
                     return
                 }
                 self.logger.info("Fetching artwork for: \(album, privacy: .public)")
-                let encodedAlbum: String = album.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                let encodedTerm: String = "\(album) \(artist)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                 if let country: String = Locale.current.regionCode,
-                   let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedAlbum)&media=music&entity=album&country=\(country)&limit=1") {
+                   let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedTerm)&media=music&entity=album&country=\(country)&limit=1") {
                     var request: URLRequest = URLRequest(url: url)
                     request.timeoutInterval = 2
                     URLSession.shared.dataTask(with: request) { data, response, error in
