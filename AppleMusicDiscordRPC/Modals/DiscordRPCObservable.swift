@@ -79,7 +79,7 @@ class DiscordRPCObservable: ObservableObject {
                 }
                 self.logger.info("Fetching artwork for: \(album, privacy: .public)")
                 let encodedTerm: String = "\(album) \(artist)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                if let country: String = Locale.current.regionCode,
+                if let country: String = Locale.current.language.region?.identifier,
                    let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedTerm)&media=music&entity=album&country=\(country)&limit=1") {
                     var request: URLRequest = URLRequest(url: url)
                     request.timeoutInterval = 2
