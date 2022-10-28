@@ -3,6 +3,17 @@
     <channel>
         <title>Apple Music Discord RPC</title>
         <item>
+            <title>1.3.0</title>
+            <pubDate>Sat, 29 Oct 2022 00:24:28 +1100</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/jkelol111/AppleMusicDiscordRPC/releases/download/1.3.0/AppleMusicDiscordRPC-1.3.0.zip" length="1569634" type="application/octet-stream" sparkle:edSignature="CYg7SiGDfVCmkrc2jmznsk3Hh7t7lt6sTv322Hle1erMCPX4gdFMA0BANEyyFqtVi8POum0jR9BzzwDi/eg4Dw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/jkelol111/AppleMusicDiscordRPC/releases/download/1.3.0/AppleMusicDiscordRPC7-5.delta" sparkle:deltaFrom="5" length="603162" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="1326032" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="9U2n/miEmoteFu8eqa6fim6/JC2i+vjEVHn3NodJZcazXN5KXRYBLETRueHMJcVAh9OPIDKWg4U1eAhPPAIPAA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.2.0</title>
             <pubDate>Thu, 19 May 2022 22:29:27 +0700</pubDate>
             <sparkle:version>5</sparkle:version>
