@@ -39,6 +39,7 @@ class DiscordRPCObservable: ObservableObject {
     @Published var isChangingConnectionStatus: Bool = true
 
     @AppStorage("showAlbumArt") var showAlbumArt: Bool = true
+    @AppStorage("showPlaybackIndicator") var showPlaybackIndicator: Bool = true
     
     private let nc: DistributedNotificationCenter = DistributedNotificationCenter.default()
     private var ncObserver: NSObjectProtocol = NSObject()
@@ -64,8 +65,10 @@ class DiscordRPCObservable: ObservableObject {
                 presence.timestamps.end = currentTime + (totalTime - playerPosition)
             }
             
-            presence.assets.smallText = self.rpcData.state.rawValue.capitalized
-            presence.assets.smallImage = self.rpcData.state.rawValue
+            if self.showPlaybackIndicator {
+                presence.assets.smallText = self.rpcData.state.rawValue.capitalized
+                presence.assets.smallImage = self.rpcData.state.rawValue
+            }
             
             presence.assets.largeText = self.rpcData.album
             if self.showAlbumArt,

@@ -5,26 +5,26 @@ struct PreferencesView: View {
     @ObservedObject var sparkleObservable: SparkleObservable
 
     @AppStorage("showAlbumArt") private var showAlbumArt: Bool = true
+    @AppStorage("showPlaybackIndicator") private var showPlaybackIndicator: Bool = true
     @AppStorage("SUEnableAutomaticChecks") private var shouldCheckUpdates: Bool = false
     
+    private func setRPC(b: Bool) {
+        DispatchQueue.main.async {
+            self.rpcObservable.setRPC()
+        }
+    }
+    
     var body: some View {
-        Toggle(isOn: self.$showAlbumArt) {
-            Text("Show album art")
-        }
-        .onChange(of: self.showAlbumArt) { _ in
-            DispatchQueue.main.async {
-                self.rpcObservable.setRPC()
+        Toggle("Show album art", isOn: self.$showAlbumArt)
+            .onChange(of: self.showAlbumArt, perform: self.setRPC)
+        Toggle("Show playback indicator", isOn: self.$showPlaybackIndicator)
+            .onChange(of: self.showPlaybackIndicator, perform: self.setRPC)
+        Toggle("Automatically check for updates", isOn: self.$shouldCheckUpdates)
+            .onChange(of: self.shouldCheckUpdates) { _ in
+                DispatchQueue.main.async {
+                    self.sparkleObservable.automaticallyCheckForUpdates = self.shouldCheckUpdates
+                }
             }
-        }
-
-        Toggle(isOn: self.$shouldCheckUpdates) {
-            Text("Automatically check for updates")
-        }
-        .onChange(of: self.shouldCheckUpdates) { _ in
-            DispatchQueue.main.async {
-                self.sparkleObservable.automaticallyCheckForUpdates = self.shouldCheckUpdates
-            }
-        }
         Button(action: {
             self.sparkleObservable.checkForUpdates()
         }) {

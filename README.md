@@ -52,7 +52,7 @@ The names Apple Music and Discord as well as related names, marks, emblems and i
 
 ## Generating `appcast.xml` (ignore unless you're me?)
 1. Look for Sparkle in the Xcode sidebar, right click it and choose 'Show in Finder'
-2. In the Finder window, navigate to `../artifacts/bin`
+2. In the Finder window, navigate to `../artifacts/sparkle/bin`
 3. Open a terminal in above directory and run `./generate_appcast /path/to/folder/with/built/zips`
 4. Fix the path of the new update to the GitHub Release.
 5. Copy the new `appcast.xml` to the repository root.
