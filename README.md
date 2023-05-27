@@ -1,4 +1,4 @@
-![Apple Music Discord RPC icon](/icon-resized.png)
+![Apple Music Discord RPC icon](/icon-resized-rounded.png)
 
 # Apple Music Discord RPC
 Discord Rich Presence for Apple Music on macOS.
@@ -16,14 +16,14 @@ To build this app, you will need:
 ## Installation
 1. Download the [latest release](https://github.com/jkelol111/AppleMusicDiscordRPC/releases/latest). (`AppleMusicDiscordRPC-x.y.z-b.zip`, not the source code)
 2. Decompress the ZIP archive.
-3. Copy `Apple Music Discord RPC.app` to `/Applications`
+3. Copy `Apple Music Discord RPC.app` to `/Applications`.
 
 ## Usage
 1. Have Discord and Music.app open.
-2. Launch `Apple Music Discord RPC.app`
+2. Launch `Apple Music Discord RPC.app`.
 
 ## Known issues
-- Album art may not match the one in Music.app
+- Album art may not match the one in Music.app.
   - **Causes**: This is because we're searching the track using the iTunes API and picking the first result.
   - **Resolution**: None yet. If there's a way to take the artwork directly from Music.app and set it for Discord, let me know.
 - Skipping/changing tracks too often leads to RPC not being updated temporarily.
@@ -37,13 +37,13 @@ To build this app, you will need:
 4. If it works, horray!
 
 ## Credits
-Icons by Flaticons. They can be found in this project @ `discord-icons`.
+Icons by [Flaticons](https://www.flaticon.com/). They can be found in the [discord-assets](./discord-assets/) folder.
 
-App icon created using Canva.
+App icon created using [Canva](https://www.canva.com/).
 
-SwordRPC originally by @Azoy. Addtional functionality added by @PKBeam.
+[SwordRPC](https://github.com/Azoy/SwordRPC) originally by [@Azoy](https://github.com/Azoy). Addtional functionality added by [@PKBeam](https://github.com/PKBeam).
 
-Music.app ScriptingBridge code generated using @tingraldi's SwiftScripting, which I forked.
+Music.app ScriptingBridge code generated using [@tingraldi's](https://github.com/tingraldi) [SwiftScripting](https://github.com/tingraldi/SwiftScripting), which I forked.
 
 ## Notice of Non-Affiliation and Disclaimer
 We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Apple, Discord, or any of its subsidiaries or its affiliates.
@@ -51,9 +51,9 @@ We are not affiliated, associated, authorized, endorsed by, or in any way offici
 The names Apple Music and Discord as well as related names, marks, emblems and images are registered trademarks of their respective owners.
 
 ## Generating `appcast.xml` (ignore unless you're me?)
-1. Look for Sparkle in the Xcode sidebar, right click it and choose 'Show in Finder'
-2. In the Finder window, navigate to `../artifacts/sparkle/bin`
-3. Open a terminal in above directory and run `./generate_appcast /path/to/folder/with/built/zips`
+1. Look for Sparkle in the Xcode sidebar, right click it and choose 'Show in Finder'.
+2. In the Finder window, navigate to `../artifacts/sparkle/bin`.
+3. Open a terminal in above directory and run `./generate_appcast /path/to/folder/with/built/zips`.
 4. Fix the path of the new update to the GitHub Release.
 5. Copy the new `appcast.xml` to the repository root.
 6. Push the changes to `main` for publishing.
