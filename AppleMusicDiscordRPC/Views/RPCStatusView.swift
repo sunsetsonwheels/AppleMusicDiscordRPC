@@ -13,22 +13,9 @@ struct RPCStatusView: View {
 
     var body: some View {
         HStack {
-            if let artworkURL: String = self.rpcObservable.artwork.url {
-                AsyncImage(url: URL(string: artworkURL)) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                    case .failure(let error):
-                        self.noArtwork
-                            .onAppear {
-                                print(error)
-                            }
-                    default:
-                        ProgressView()
-                    }
-                }
-                .frame(width: self.artworkSize, height: self.artworkSize)
+            if let artworkURL: NSImage = self.rpcObservable.artwork.url {
+                Image(nsImage: artworkURL).resizable()
+                    .frame(width: self.artworkSize, height: self.artworkSize)
             } else {
                 self.noArtwork
             }

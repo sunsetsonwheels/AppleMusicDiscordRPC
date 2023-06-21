@@ -2,10 +2,16 @@ import SwiftUI
 import ScriptingBridge
 import SwordRPC
 import os
+import Foundation
 
 class DiscordRPCObservable: ObservableObject {
     private struct iTunesQueryResults: Decodable {
+        let collectionName: String
+        let collectionCensoredName: String
         let artworkUrl100: String
+        func artworkUrl128() -> String {
+            return self.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
+        }
     }
 
     private struct iTunesQueryResponse: Decodable {
@@ -29,12 +35,12 @@ class DiscordRPCObservable: ObservableObject {
 
     struct AMArtwork {
         var album: String?
-        var url: String?
+        var url: NSImage?
     }
 
+    @Published var musicArt: Data?;
     @Published var rpcData: DiscordRPCData = DiscordRPCData(state: .stopped)
     @Published var artwork: AMArtwork = AMArtwork()
-
     @Published var isDiscordConnected: Bool = false
     @Published var isChangingConnectionStatus: Bool = true
 
@@ -49,7 +55,8 @@ class DiscordRPCObservable: ObservableObject {
 
     private let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "DiscordRPCObservable")
     private let jsond: JSONDecoder = JSONDecoder()
-    
+    private var albumId: Int = 0
+
     func setRPC() {
         if isDiscordConnected {
             var presence: RichPresence = RichPresence()
@@ -58,8 +65,8 @@ class DiscordRPCObservable: ObservableObject {
             presence.state = self.rpcData.artist
             
             if self.rpcData.state == .playing,
-               let playerPosition: Double = self.AMApp?.playerPosition,
-               let totalTime: Double = self.rpcData.totalTime {
+                let playerPosition: Double = self.AMApp?.playerPosition,
+                let totalTime: Double = self.rpcData.totalTime {
                 let currentTime: Date = Date()
                 presence.timestamps.start = currentTime
                 presence.timestamps.end = currentTime + (totalTime - playerPosition)
@@ -74,71 +81,51 @@ class DiscordRPCObservable: ObservableObject {
             if self.showAlbumArt,
                let album: String = self.rpcData.album,
                let artist: String = self.rpcData.artist {
-                if self.artwork.album == album {
-                    self.logger.info("Album identical, not replacing artwork URL.")
-                    presence.assets.largeImage = self.artwork.url
-                    self.rpc.setPresence(presence)
-                    return
+                let artworks: Array<MusicArtwork>? = self.AMApp?.currentTrack?.artworks?()
+                let country: String = Locale.current.language.region?.identifier ?? "us"
+                
+                var requestURL = "https://itunes.apple.com/search?term=\(artist)&entity=album&country=\(country)&attribute=artistTerm"
+                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                
+                if self.albumId != 0 {
+                    requestURL = "https://itunes.apple.com/lookup?id=\(self.albumId)"
                 }
-                self.logger.info("Fetching artwork for: \(album, privacy: .public)")
-                let encodedTerm: String = "\(album) \(artist)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                if let country: String = Locale.current.language.region?.identifier,
-                   let url: URL = URL(string: "https://itunes.apple.com/search?term=\(encodedTerm)&media=music&entity=album&country=\(country)&limit=1") {
+                
+                if let url: URL = URL(string: requestURL) {
                     var request: URLRequest = URLRequest(url: url)
                     request.timeoutInterval = 2
                     URLSession.shared.dataTask(with: request) { data, response, error in
                         if let error {
                             self.logger.error("Unable to fetch artwork: \(error.localizedDescription, privacy: .public)")
-                            presence.assets.largeImage = "applemusic_large"
-                            DispatchQueue.main.sync {
-                                self.artwork.url = nil
-                            }
-                            self.rpc.setPresence(presence)
+                            self.artwork.url = nil
                         }
                         if let data {
                             if let iTunesResponse: iTunesQueryResponse = try? self.jsond.decode(iTunesQueryResponse.self, from: data) {
+                                
                                 if iTunesResponse.resultCount > 0 {
-                                    let artworkURL: String = iTunesResponse.results.first!.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
-                                    self.logger.info("Fetched artwork: \(artworkURL, privacy: .public)")
-                                    presence.assets.largeImage = artworkURL
-                                    DispatchQueue.main.sync {
-                                        self.artwork.album = album
-                                        self.artwork.url = artworkURL
-                                    }
-                                } else {
-                                    self.logger.warning("No artwork found. Setting default image.")
-                                    presence.assets.largeImage = "applemusic_large"
-                                    DispatchQueue.main.sync {
-                                        self.artwork.url = nil
-                                    }
+                                    // Over lookups, there should have only one result, but on a search, more than one response is possible
+                                    let albumCover: iTunesQueryResults = iTunesResponse.results.first(where: {
+                                        (result: iTunesQueryResults) in
+                                        return result.collectionName == album || result.collectionCensoredName == album
+                                    }) ?? iTunesResponse.results[0]
+
+                                    presence.assets.largeImage = albumCover.artworkUrl128()
                                 }
-                                self.rpc.setPresence(presence)
-                            } else {
-                                self.logger.warning("Could not parse iTunes response. Setting default image.")
-                                presence.assets.largeImage = "applemusic_large"
-                                DispatchQueue.main.sync {
-                                    self.artwork.url = nil
-                                }
-                                self.rpc.setPresence(presence)
                             }
-                        } else {
-                            self.logger.warning("No artwork found. Setting default image.")
-                            presence.assets.largeImage = "applemusic_large"
-                            DispatchQueue.main.sync {
-                                self.artwork.url = nil
-                            }
+                            
                             self.rpc.setPresence(presence)
                         }
-                    }
-                    .resume()
-                } else {
-                    self.logger.warning("Can't form iTunes search URL. Setting default image.")
-                    presence.assets.largeImage = "applemusic_large"
-                    self.artwork.url = nil
-                    self.rpc.setPresence(presence)
+                    }.resume()
                 }
+                
+                self.artwork.album = album
+                // if no artworks embbeded to the file, it returns nil so RPCStatusView can render no artwork
+                self.artwork.url = artworks?.first?.data ?? nil
+                
+                self.rpc.setPresence(presence)
             } else {
                 presence.assets.largeImage = "applemusic_large"
+                
                 self.rpc.setPresence(presence)
             }
         }
@@ -190,6 +177,10 @@ class DiscordRPCObservable: ObservableObject {
             queue: nil
         ) { notification in
             self.logger.log("Received Apple Music notification: \(notification, privacy: .public)")
+            let storeURL = notification.userInfo?[AnyHashable("Store URL")] as? String
+            if let match = storeURL?.firstMatch(of: /(\d+)/) {
+                self.albumId = Int(match.1) ?? 0
+            }
             self.rpcData.name = notification.userInfo?[AnyHashable("Name")] as? String
             self.rpcData.artist = notification.userInfo?[AnyHashable("Artist")] as? String
             self.rpcData.album = notification.userInfo?[AnyHashable("Album")] as? String
