@@ -121,11 +121,13 @@ class DiscordRPCObservable: ObservableObject {
                 self.artwork.album = album
                 // if no artworks embbeded to the file, it returns nil so RPCStatusView can render no artwork
                 self.artwork.url = artworks?.first?.data ?? nil
+                
+                self.rpc.setPresence(presence)
             } else {
                 presence.assets.largeImage = "applemusic_large"
+                
+                self.rpc.setPresence(presence)
             }
-            
-            self.rpc.setPresence(presence)
         }
     }
     
