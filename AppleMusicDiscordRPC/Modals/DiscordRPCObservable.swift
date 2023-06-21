@@ -6,6 +6,8 @@ import Foundation
 
 class DiscordRPCObservable: ObservableObject {
     private struct iTunesQueryResults: Decodable {
+        let collectionName: String
+        let collectionCensoredName: String
         let artworkUrl100: String
         func artworkUrl128() -> String {
             return self.artworkUrl100.replacingOccurrences(of: "100x100bb", with: "128x128")
@@ -49,7 +51,7 @@ class DiscordRPCObservable: ObservableObject {
     private var ncObserver: NSObjectProtocol = NSObject()
     private let AMApp: MusicApplication? = SBApplication(bundleIdentifier: "com.apple.Music")
     
-    private var rpc: SwordRPC = SwordRPC(appId: "1119775227686162534")
+    private var rpc: SwordRPC = SwordRPC(appId: "785053859915366401")
 
     private let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "DiscordRPCObservable")
     private let jsond: JSONDecoder = JSONDecoder()
@@ -77,10 +79,19 @@ class DiscordRPCObservable: ObservableObject {
             
             presence.assets.largeText = self.rpcData.album
             if self.showAlbumArt,
-               let album: String = self.rpcData.album {
+               let album: String = self.rpcData.album,
+               let artist: String = self.rpcData.artist {
                 let artworks: Array<MusicArtwork>? = self.AMApp?.currentTrack?.artworks?()
+                let country: String = Locale.current.language.region?.identifier ?? "us"
                 
-                if let url: URL = URL(string: "https://itunes.apple.com/lookup?id=\(self.albumId)") {
+                var requestURL = "https://itunes.apple.com/search?term=\(artist)&entity=album&country=\(country)&attribute=artistTerm"
+                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                
+                if self.albumId != 0 {
+                    requestURL = "https://itunes.apple.com/lookup?id=\(self.albumId)"
+                }
+                
+                if let url: URL = URL(string: requestURL) {
                     var request: URLRequest = URLRequest(url: url)
                     request.timeoutInterval = 2
                     URLSession.shared.dataTask(with: request) { data, response, error in
@@ -90,13 +101,19 @@ class DiscordRPCObservable: ObservableObject {
                         }
                         if let data {
                             if let iTunesResponse: iTunesQueryResponse = try? self.jsond.decode(iTunesQueryResponse.self, from: data) {
-                                print(iTunesResponse.resultCount)
+                                
                                 if iTunesResponse.resultCount > 0 {
-                                    // There should be only one result searching by album id
-                                    print(iTunesResponse.results[0].artworkUrl128())
-                                    presence.assets.largeImage = iTunesResponse.results[0].artworkUrl128()
+                                    // Over lookups, there should have only one result, but on a search, more than one response is possible
+                                    let albumCover: iTunesQueryResults = iTunesResponse.results.first(where: {
+                                        (result: iTunesQueryResults) in
+                                        return result.collectionName == album || result.collectionCensoredName == album
+                                    }) ?? iTunesResponse.results[0]
+
+                                    presence.assets.largeImage = albumCover.artworkUrl128()
                                 }
                             }
+                            
+                            self.rpc.setPresence(presence)
                         }
                     }.resume()
                 }
@@ -181,7 +198,7 @@ class DiscordRPCObservable: ObservableObject {
     }
     
     func newSwordRPC() {
-        self.rpc = SwordRPC(appId: "1119775227686162534")
+        self.rpc = SwordRPC(appId: "785053859915366401")
         self.rpc.onConnect { _ in
             DispatchQueue.main.async {
                 self.isDiscordConnected = true
